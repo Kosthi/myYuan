@@ -1,0 +1,39 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/center/center",
+    "pages/about/about",
+    "pages/logs/logs"
+  ],
+  "tabBar": {
+    "color": "#333",
+    "selectedColor": "#0f0",
+    "list": [{
+      "pagePath": "pages/index/index",
+      "text": "主页",
+      "iconPath": "images/guanzhu1.png",
+      "selectedIconPath": "images/guanzhu2.png"
+    },
+    {
+      "pagePath": "pages/center/center",
+      "text": "中心",
+      "iconPath": "images/shequ1.png",
+      "selectedIconPath": "images/shequ2.png"
+    },
+    {
+      "pagePath": "pages/about/about",
+      "text": "关于",
+      "iconPath": "images/shequ1.png",
+      "selectedIconPath": "images/shequ2.png"
+    }]
+  },
+  "window": {
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "圆了个圆",
+    "navigationBarBackgroundColor": "#ffffff"
+  },
+  "style": "v2",
+  "componentFramework": "glass-easel",
+  "sitemapLocation": "sitemap.json",
+  "lazyCodeLoading": "requiredComponents"
+}
