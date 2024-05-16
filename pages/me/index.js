@@ -23,6 +23,11 @@ Page({
       },
       {
         img: "imagines/我的钱包.png",
+        title: "抖声外卖",
+        url: "/pages/money/index"
+      },
+      {
+        img: "imagines/我的钱包.png",
         title: "我的钱包",
         url: "/pages/money/index"
       },

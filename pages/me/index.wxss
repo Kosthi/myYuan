@@ -181,7 +181,7 @@
   border-radius: 4px;
 }
 
-.nav{
+/* .nav{
   margin-top: 10px;
   display: flex;
   flex-wrap: wrap;
@@ -197,11 +197,37 @@
 .nav image{
   width: 30px;
   height: 30px;
+} */
+
+.nav {
+  display: flex; /* 将所有组合放置在一行 */
+  overflow-x: auto; /* 如果组合超出屏幕宽度，添加水平滚动条 */
+  white-space: nowrap; /* 防止文字换行 */
+}
+
+.menu-item {
+  display: flex; /* 将图片和文字放置在一行 */
+  flex-direction: column; /* 垂直排列图片和文字 */
+  align-items: center; /* 水平居中对齐 */
+  margin-right: 10px; /* 可根据需要添加间距 */
+}
+
+.avatar {
+  margin: 10px 20px;
+  margin-left: 23px;
+  width: 30px; /* 图片宽度 */
+  height: 30px; /* 图片高度 */
+  border-radius: 50px;
+}
+
+.username {
+  font-size: 14px; /* 文字大小 */
+  color: #333; /* 文字颜色 */
+  text-align: center; /* 文字水平居中对齐 */
 }
 
 .nav-text{
   margin: 10px 10px;
-
 }
 .nav-text image{
   width: 15px;

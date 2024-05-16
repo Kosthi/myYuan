@@ -67,7 +67,7 @@
       <image class="icon-introduce" src="imagines/编辑 (1).png"></image>
     </view>
 
-    <view class="nav">
+    <!-- <view class="nav">
       <view wx:for="{{menuList}}" wx:key='index'>
         <navigator url="{{item.url}}">
           <image src="{{item.img}}" mode=""/>
@@ -76,7 +76,18 @@
           </text>
         </navigator>
       </view>
-    </view>
+    </view> -->
+<view class="nav">
+  <view wx:for="{{menuList}}" wx:key='index'>
+    <navigator url="{{item.url}}">
+      <view class="menu-item">
+        <image class="avatar" src="{{item.img}}" mode=""/>
+        <text class="username">{{item.title}}</text>
+      </view>
+    </navigator>
+  </view>
+</view>
+
     <view class="nav-text">
       <view class="na-text" data-index="0" bindtap="toggleImage">
         <text>作品</text>
