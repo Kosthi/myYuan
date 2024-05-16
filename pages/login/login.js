@@ -1,4 +1,6 @@
 // pages/login/index.js
+const app = getApp()
+
 const admins = [
     {
         id: 1,
@@ -30,7 +32,8 @@ Page({
      * 页面的初始数据
      */
     data: {
-        isAgreed: false // 初始状态为未同意
+        isAgreed: false, // 初始状态为未同意
+        isRegistering: false // 初始状态为登录
     },
 
     agreeTerms: function () {
@@ -38,6 +41,119 @@ Page({
         this.setData({
             isAgreed: !this.data.isAgreed
         });
+    },
+
+    switchToRegister() {
+        // 切换登录/注册状态
+        this.setData({
+            isRegistering: !this.data.isRegistering
+        });
+    },
+
+    formSubmit(e) {
+        if (this.data.isRegistering) {
+            // 如果当前是注册状态，则调用注册逻辑
+            this.register(e);
+        } else {
+            // 如果当前是登录状态，则调用登录逻辑
+            this.login(e);
+        }
+    },
+
+    // 处理登录逻辑
+    // 提交登录表单，发送登录请求
+    login(e) {
+        console.log('登录');
+        // 账号密码
+        let value = e.detail.value
+        if (value.username.length === 0 || value.password.length === 0) {
+            wx.showToast({
+                title: "账户或密码不为空",
+                icon: "none"
+            })
+            return
+        }
+        // 发送登录请求
+        userLogin(value.username, value.password, function (success, msg) {
+            if (success) {
+                let userId = wx.getStorageSync('userId')
+                let token = wx.getStorageSync('token')
+                getUserInfo(userId, token, function (success, msg) {
+                    if (success) {
+                        wx.showToast({
+                            title: msg,
+                            icon: "success",
+                            success: () => {
+                                // 跳转去首页
+                                setTimeout(() => {
+                                    wx.switchTab({
+                                        url: '/pages/index/index',
+                                    })
+                                }, 150)
+                            }
+                        })
+                    } else {
+                        wx.showToast({
+                            title: msg,
+                            icon: "error"
+                        })
+                    }
+                })
+            } else {
+                wx.showToast({
+                    title: "账户或密码错误",
+                    icon: "error"
+                })
+            }
+        })
+    },
+
+    // 处理注册逻辑
+    // 提交注册表单，发送注册请求
+    register(e) {
+        console.log('注册');
+        // 账号密码
+        let value = e.detail.value
+        if (value.username.length === 0 || value.password.length === 0) {
+            wx.showToast({
+                title: "账户或密码不为空",
+                icon: "none"
+            })
+            return
+        }
+        // 发送注册请求
+        userRegister(value.username, value.password, function (success, msg) {
+            if (success) {
+                let userId = wx.getStorageSync('userId')
+                let token = wx.getStorageSync('token')
+                getUserInfo(userId, token, function (success, msg) {
+                    if (success) {
+                        wx.showToast({
+                            title: msg,
+                            icon: "success",
+                            success: () => {
+                                // 跳转去首页
+                                setTimeout(() => {
+                                    wx.switchTab({
+                                        url: '/pages/index/index',
+                                    })
+                                }, 150)
+                            }
+                        })
+                    } else {
+                        wx.showToast({
+                            title: msg,
+                            icon: "error"
+                        })
+                    }
+                })
+            } else {
+                wx.showToast({
+                    title: msg,
+                    icon: "error"
+                })
+            }
+        })
     },
 
     /**
@@ -52,41 +168,6 @@ Page({
      */
     onReady() {
 
-    },
-
-    formSubmit(e) {
-        console.log(e)
-        //账号密码
-        let value = e.detail.value
-
-        //可以用过滤
-        let result = admins.filter(item => {
-            return item.tel === value.tel && item.password === value.password
-        })
-
-        console.log(result, 'a')
-
-        if (result.length > 0) {
-            wx.showToast({
-                title: '登陆成功',
-                icon: "success",
-                success: () => {
-                    //跳转去首页
-                    setTimeout(() => {
-                        wx.switchTab({
-                            url: '/pages/index/index',
-                        })
-                    }, 1500)
-                    //将用户信息存储，其他页面会用到
-                    wx.setStorageSync('user', result[0])
-                }
-            })
-        } else {
-            wx.showToast({
-                title: '手机号或密码错误',
-                icon: "error"
-            })
-        }
     },
 
     /**
@@ -131,3 +212,117 @@ Page({
 
     }
 })
+
+// 定义发送注册请求的函数
+function userRegister(username, password, callback) {
+    // 构建请求的URL
+    const apiUrl = app.serverUrl + '/douyin/user/register/'
+    // 发送HTTP POST请求
+    wx.request({
+        url: apiUrl,
+        method: 'POST',
+        data: {
+            username: username,
+            password: password
+        },
+        success: function (res) {
+            // 请求成功的回调函数
+            console.log('User registration successful:', res.data)
+            // 处理注册成功的响应数据
+            const statusCode = res.data.status_code
+            if (statusCode === 0) {
+                // 注册成功，可以获取用户id和鉴权token
+                const userId = res.data.user_id
+                const token = res.data.token
+                // 在这里处理注册成功后的逻辑，比如保存用户信息到本地存储中
+                wx.setStorageSync('userId', userId)
+                wx.setStorageSync('token', token)
+                callback(true, "注册成功")
+            } else {
+                // 注册失败，输出错误信息
+                console.error('User registration failed:', res.data.status_msg)
+                callback(false, res.data.status_msg)
+            }
+        },
+        fail: function (error) {
+            // 请求失败的回调函数
+            console.error('Failed to send user registration request:', error)
+            callback(false, error)
+        }
+    })
+}
+
+// 用户登录
+function userLogin(username, password, callback) {
+    const apiUrl = app.serverUrl + '/douyin/user/login/'
+    wx.request({
+        url: apiUrl,
+        method: 'POST',
+        data: {
+            username: username,
+            password: password
+        },
+        success: function (res) {
+            // 登录成功的处理逻辑
+            console.log('User login successful:', res.data)
+            // 处理注册成功的响应数据
+            const statusCode = res.data.status_code
+            if (statusCode === 0) {
+                // 注册成功，可以获取用户id和鉴权token
+                const userId = res.data.user_id
+                const token = res.data.token
+                // 在这里处理注册成功后的逻辑，比如保存用户信息到本地存储中
+                wx.setStorageSync('userId', userId)
+                wx.setStorageSync('token', token)
+                callback(true, "登录成功")
+            } else {
+                // 注册失败，输出错误信息
+                console.error('User login failed:', res.data.status_msg)
+                callback(false)
+            }
+        },
+        fail: function (error) {
+            // 请求失败的回调函数
+            console.error('Failed to send user login request:', error)
+            callback(false)
+        }
+    });
+}
+
+// 在注册或登录成功后会调用/douyin/user/接口拉取当前登录用户的全部信息，并存储到本地
+function getUserInfo(userId, token, callback) {
+    const apiUrl = app.serverUrl + '/douyin/user/'
+    wx.request({
+        url: apiUrl,
+        method: 'GET',
+        data: {
+            user_id: userId,
+            token: token
+        },
+        success: function (res) {
+            // 获取用户信息成功的处理逻辑
+            console.log('Get user info successful:', res.data)
+            // 处理注册成功的响应数据
+            const statusCode = res.data.status_code
+            if (statusCode === 0) {
+                // 注册成功，可以获取用户id和鉴权token
+                // const userId = res.data.user_id
+                // const token = res.data.token
+                // // 在这里处理注册成功后的逻辑，比如保存用户信息到本地存储中
+                // wx.setStorageSync('userId', userId)
+                // wx.setStorageSync('token', token)
+                app.setGlobalUserInfo(res.data.user)
+                callback(true, "获取用户信息成功")
+            } else {
+                // 注册失败，输出错误信息
+                console.error('Get user info failed:', res.data.status_msg)
+                callback(false, res.data.status_msg)
+            }
+        },
+        fail: function (error) {
+            // 获取用户信息失败的处理逻辑
+            console.error('Failed to get user info:', error);
+            callback(false, error)
+        }
+    });
+}

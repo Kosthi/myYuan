@@ -4,7 +4,7 @@
     </view>
     <form catchsubmit="formSubmit">
         <view class="form-item">
-            <input class="weui-input" name="tel" placeholder="请输入手机号"/>
+            <input class="weui-input" name="username" placeholder="请输入用户名"/>
         </view>
         <view class="form-item">
             <input class="weui-input" name="password" type="password" placeholder="请输入密码"/>
@@ -24,15 +24,15 @@
         </view>
 
         <view class="form-item submit">
-            <button type="primary" formType="submit">登录</button>
+            <button type="primary" formType="submit">{{isRegistering ? '注册' : '登录'}}</button>
         </view>
 
         <view class="user-password">
             <view class="p1">
-                忘记了？
+                {{isRegistering ? '已有账户？' : '没有账户？'}}
             </view>
-            <view class="p11">
-                找回密码
+            <view class="p11" bindtap="switchToRegister">
+                {{isRegistering ? '登录' : '注册'}}
             </view>
             <view class="p2">
                 邮箱密码登录
