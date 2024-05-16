@@ -14,7 +14,7 @@ function remove(name, self) {
     var callbacks = events[name];
     if (Array.isArray(callbacks)) {
         events[name] = callbacks.filter((tuple) => {
-            return tuple[0] != self;
+            return tuple[0] !== self;
         })
     }
 }

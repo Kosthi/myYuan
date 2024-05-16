@@ -27,7 +27,6 @@
                              src="{{userData.headPic}}"></cover-image>
                 <cover-image class="userinfo-avatar" wx:else data-lecturerId="{{videos[videoIndex].lecturerId}}"
                              catchtap='goUserHome' src="{{videos[videoIndex].icon}}"></cover-image>
-
                 <cover-image class="userinfo-add" wx:if="{{videos[videoIndex].isfans == 0}}" src="/assets/image/add.png"
                              data-index="{{videoIndex}}" data-lecturerId="{{videos[videoIndex].lecturerId}}"
                              catchtap='addLecturerFans'></cover-image>
@@ -38,7 +37,7 @@
             <cover-view>
                 <cover-image class="icon right-icon" data-likeNum="{{videos[videoIndex].likenum}}"
                              data-index="{{videoIndex}}" data-videoId="{{videos[videoIndex].contentId}}"
-                             wx:if="{{videos[videoIndex].isLike == 0}}" src='/assets/image/start.png'
+                             wx:if="{{videos[videoIndex].isLike === 0}}" src='/assets/image/start.png'
                              catchtap='doubleTap'></cover-image>
                 <cover-image class="icon right-icon" wx:else src='/assets/image/active.png'></cover-image>
                 <cover-view class="text">{{videos[videoIndex].likenum}}</cover-view>
@@ -103,8 +102,7 @@
     <!-- 整个评论区  -->
     <view class='talks-layer' animation='{{talksAnimationData}}'>
         <!-- 主要作用是点击后隐藏评论区  -->
-        <view class='layer-white-space' catchtap='hideTalks'>
-        </view>
+        <view class='layer-white-space' catchtap='hideTalks'></view>
         <!-- 评论区  -->
         <view class='talks'>
             <!-- 评论头部  -->
@@ -120,7 +118,7 @@
             <scroll-view class='talk-body' scroll-y="true" bindscrolltolower="onScrollLoad">
                 <view class='talk-item' wx:for="{{commentList}}" wx:key="index">
                     <view class='talk-item-left'>
-                        <image class='talk-item-face' wx:if="{{videos[videoIndex].icon == ''}}"
+                        <image class='talk-item-face' wx:if="{{videos[videoIndex].icon === ''}}"
                                src='/assets/image/userImage.png'></image>
                         <image class='talk-item-face' wx:else src="{{videos[videoIndex].icon}}"></image>
                     </view>

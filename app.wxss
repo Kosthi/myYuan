@@ -29,3 +29,17 @@
     padding: 10rpx;
     color: #A8A8A8
 }
+
+.title {
+    /* padding: 10px; */
+    font-weight: bold;
+    font-size: 22px;
+}
+
+input {
+    /* padding: 10px 0; */
+    /* box-sizing: border-box; */
+    border-bottom: 1px solid #e1e1e1;
+    /* margin: 10px 0; */
+    width: 100%;
+}

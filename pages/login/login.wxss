@@ -1,0 +1,111 @@
+.form {
+    margin: 30px 40px 0px 40px; /* 上→右→下→左 */
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.user-login {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.form-item {
+    padding: 0 10px;
+    box-sizing: border-box;
+    width: calc(100vw - 80px); /* 减去左右边距的总宽度 */
+    display: flex;
+    justify-content: center;
+
+}
+
+.user-login {
+    margin-bottom: 10px;
+}
+
+.submit button {
+    margin: 20px 0;
+}
+
+
+.user-agreement {
+    display: flex;
+    align-items: center;
+    margin-top: 15px;
+}
+
+
+.agreement-link {
+    color: rgb(41, 18, 158);
+    padding: 0px 5px;
+}
+
+/* Set background and border radius for input fields */
+.form-item input.weui-input[name="username"],
+.form-item input.weui-input[name="password"] {
+    background-color: #fcf6f6; /* Light grey background */
+    border-radius: 5px; /* Rounded corners */
+    padding: 10px 10px; /* 调整内部内容和边框之间的间距 */
+    font-size: 15px;
+    margin-bottom: 0px;
+    margin-right: 0px;
+}
+
+/* Set background and border radius for login button */
+.submit button[type="primary"] {
+    background-color: rgb(255, 117, 147); /* Red background */
+    border-radius: 5px; /* Rounded corners */
+    width: calc(100vw - 80px); /* Match the width of input fields */
+}
+
+/* Style for the '邮箱密码登录' and '用户协议' links */
+/* .agreement-link {
+  color: rgb(7, 7, 14);
+  font-size: 15px; /* Set font size 
+} */
+
+/* Align '邮箱密码登录' and '用户协议' links to the right */
+
+.user-password {
+    display: flex;
+    justify-content: space-between;
+}
+
+/* Style for the '用户协议' and '隐私政策' links */
+.agreement-link,
+.user-password .p2,
+.user-password .p11,
+.user-agreement .user-item agreement-link {
+    color: rgb(16, 6, 65);
+    padding: 0px 5px;
+    font-size: 12px;
+}
+
+/* 让“忘记了找回密码”靠左对齐 */
+.user-password .p1 {
+    text-align: left;
+    margin-right: 0px;
+}
+
+.user-password {
+    display: flex;
+}
+
+/* 让“找回密码”靠左对齐 */
+.user-password .p11 {
+    flex: 1px;
+    text-align: left;
+}
+
+/* 让“邮箱密码登录”靠右对齐 */
+.user-password .p2 {
+    text-align: right;
+    margin-right: 0; /* 移除右侧间距 */
+}
+
+/* 调整字体颜色和大小 */
+.user-password .p1,
+.user-agreement {
+    color: rgb(126, 126, 126); /* 设置为浅灰色 */
+    font-size: 12px; /* 设置字体大小 */
+}

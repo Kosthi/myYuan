@@ -10,7 +10,7 @@ Page({
      * 页面的初始数据
      */
     data: {
-        percent: 1,
+        percent: 33,
         current: 0,
         autoplay: true,
         controls: false,
@@ -35,6 +35,15 @@ Page({
         rows: 9,
         commentList: [],
         videos: [
+            {
+                videoUrl: "http://simple-douyin-oss.test.upcdn.net/videos/1/2024-05-13 01:51:16.mp4",
+                durations: 10,
+                poster: "http://simple-douyin-oss.test.upcdn.net/covers/1/2024-05-13 01:51:18.webp",
+                likenum: 10,
+                commnetnum: '520',
+                rewardNum: '6',
+                isLike: 0
+            },
             {
                 videoUrl: "http://video.microc.cn/dG1wL3d4MzkwNjg3YjY3OTZjZTMzYS5vNnpBSnMzYTJqaDJHUWRGVllDV2JhaHhjTUFzLkFaeGE2d1NIVTV3cjkyNGFlOGIyMjMxYTgwNjYyOTVhZjY2YTJjN2VjY2MwLm1wNA==",
                 durations: 10,
@@ -289,11 +298,76 @@ Page({
         var that = this
         // 控制点击事件在350ms内触发，加这层判断是为了防止长按时会触发点击事件
         that.setData({
-            contentId: e.currentTarget.dataset.videoid, // 点赞内容id
+            contentId: 6, // 点赞内容id
+            // contentId: e.currentTarget.dataset.videoid, // 点赞内容id
             videoIndex: e.currentTarget.dataset.index,
             likeNum: e.currentTarget.dataset.likenum
         })
-        that.addVideoLike()
+        that.sendFavoriteAction()
+        // that.addVideoLike()
+    },
+
+    // 定义发送点赞操作请求的函数
+    sendFavoriteAction: function () {
+        // function sendFavoriteActionRequest(token, videoId, actionType) {
+        // 构建请求的URL
+        console.log("发送点赞")
+        const apiUrl = 'http://127.0.0.1:8888/douyin/favorite/action/'
+
+        // 构建请求的数据
+        // 调用函数发送点赞操作请求，假设点赞视频ID为123，点赞操作类型为1（点赞）2（取消点赞）
+        const requestData = {
+            token: app.globalData.token,
+            video_id: 6,
+            action_type: 1
+        };
+
+        const like = this.data.likeNum
+
+        // 发送HTTP POST请求
+        wx.request({
+            url: apiUrl,
+            method: 'POST',
+            data: requestData,
+            success: function (res) {
+                // 请求成功的回调函数
+                console.log('Favorite action request successful:', res.data);
+            },
+            fail: function (error) {
+                // 请求失败的回调函数
+                console.error('Failed to send favorite action request:', error);
+            }
+        });
+
+        // Http.HttpRequst(false, apiUrl, false, '', requestData, 'POST', false, function (res) {
+        //     // 0-成功，1-失败
+        //     console.log(res.status_code === 0, '66')
+        //     if (res.status_code === 0) {
+        //         that.setData({
+        //             [videosList]: res.dataObject,
+        //             [likenum]: parseInt(like) + parseInt(1)
+        //         })
+        //     } else if (res.code === 1) {
+        //         console.log(res.status_msg)
+        //     } else {
+        //         console.log("未知错误")
+        //     }
+        // })
+
+        // 发送HTTP POST请求
+        // wx.request({
+        //     url: apiUrl,
+        //     method: 'POST',
+        //     data: requestData,
+        //     success: function (res) {
+        //         // 请求成功的回调函数
+        //         console.log('Favorite action request successful:', res.data);
+        //     },
+        //     fail: function (error) {
+        //         // 请求失败的回调函数
+        //         console.error('Failed to send favorite action request:', error);
+        //     }
+        // });
     },
 
     addVideoLike: function () { // 点赞视频
@@ -310,13 +384,13 @@ Page({
         const like = that.data.likeNum
         console.log(likenum, 'likenumlikenumlikenumlikenum')
         Http.HttpRequst(false, '/api/lecture/addUserLike?accessToken=' + params.accessToken + '&evaType=content' + '&id=' + params.id + '&likeFlag=1', false, '', params, 'POST', false, function (res) {
-            console.log(res.code == 102, '66')
-            if (res.code == 102) {
+            console.log(res.code === 102, '66')
+            if (res.code === 102) {
                 that.setData({
                     [videosList]: res.dataObject,
                     [likenum]: parseInt(like) + parseInt(1)
                 })
-            } else if (res.code == 101) {
+            } else if (res.code === 101) {
                 console.log(res.value)
             } else {
             }
@@ -336,8 +410,8 @@ Page({
         }
         const that = this
         Http.HttpRequst(false, '/api/lecture/getCommentList', false, '', params, 'get', false, function (res) {
-            console.log(res.code == 102, '66')
-            if (res.code == 102) {
+            console.log(res.code === 102, '66')
+            if (res.code === 102) {
                 if (res.dataObject.list.length < that.data.rows) {
                     that.setData({
                         commentList: that.data.commentList.concat(res.dataObject.list),
@@ -354,12 +428,12 @@ Page({
                         totalCount: res.dataObject.totalCount
                     })
                 }
-                if (that.data.pageNo && res.dataObject.list.length == 0) {
+                if (that.data.pageNo && res.dataObject.list.length === 0) {
                     that.setData({
                         nodata: true
                     })
                 }
-            } else if (res.code == 1001) {
+            } else if (res.code === 1001) {
             }
         })
     },
@@ -372,9 +446,9 @@ Page({
             accessToken: app.globalData.token
         }
         Http.HttpRequst(false, '/api/lecture/getOwnInfo', false, '', params, 'get', false, function (res) {
-            if (res.code == 102) {
+            if (res.code === 102) {
                 app.globalData.userId = res.dataObject.lecturerId
-            } else if (res.code == 1001) {
+            } else if (res.code === 1001) {
 
             }
         })
@@ -382,7 +456,7 @@ Page({
 
     goHome: function () {
         wx.redirectTo({
-            url: '/pages/home/home'
+            url: '/pages/login/login'
         })
     },
 

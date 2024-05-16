@@ -13,7 +13,7 @@ var app = getApp()
 //ask是是否要进行询问授权，true为要，false为不要
 //sessionChoose为1,2,3,4,所以paramSession下标为0的则为空
 function HttpRequst(loading, url, sessionChoose, sessionId, params, method, ask, callBack) {
-    if (loading == true) {
+    if (loading === true) {
         wx.showToast({
             title: '数据加载中',
             icon: 'loading'
@@ -31,7 +31,7 @@ function HttpRequst(loading, url, sessionChoose, sessionId, params, method, ask,
     var token = wx.getStorageSync('token');
     var session = ''
     // console.log(token, '我是token')
-    if (sessionChoose == false) {
+    if (sessionChoose === false) {
         session = 'application/json'
     } else {
         session = 'application/x-www-form-urlencoded'
@@ -48,8 +48,8 @@ function HttpRequst(loading, url, sessionChoose, sessionId, params, method, ask,
         success: function (res) {
             // console.log(res)
             wx.hideLoading()
-            if (res.statusCode == 200) {
-                if (loading == true) {
+            if (res.statusCode === 200) {
+                if (loading === true) {
                     wx.hideToast();//隐藏提示框
                 }
                 console.log(res.data.code, url, 'url')
@@ -64,7 +64,7 @@ function HttpRequst(loading, url, sessionChoose, sessionId, params, method, ask,
                             url: '/pages/login/login',
                         })
                     }, 1000)
-                } else if (res.data.code == 101) {
+                } else if (res.data.code === 101) {
                     wx.showModal({
                         title: '提示',
                         content: '异常',
@@ -80,7 +80,7 @@ function HttpRequst(loading, url, sessionChoose, sessionId, params, method, ask,
                 } else {
                     callBack(res.data);
                 }
-            } else if (res.statusCode == 502) {
+            } else if (res.statusCode === 502) {
                 wx.showModal({
                     title: '提示',
                     content: '服务器异常',
@@ -91,7 +91,7 @@ function HttpRequst(loading, url, sessionChoose, sessionId, params, method, ask,
             console.log(e)
         },
         complete: function () {
-            if (loading == true) {
+            if (loading === true) {
                 wx.hideToast();//隐藏提示框
             }
         }
