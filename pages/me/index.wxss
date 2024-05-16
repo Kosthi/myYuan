@@ -1,0 +1,245 @@
+.header {
+  border-radius: 10px; /* 圆角边框 */
+  padding: 10px; /* 内边距 */
+  display: flex; /* 横向排列 */
+}
+
+.row1{
+  margin-left: 10px;
+  background-color: #bfbece; /* 背景颜色为粉色 */
+  border-radius: 20px; /* 圆角矩形背景 */
+  padding: 8px; /* 可根据需要添加内边距 */
+  font-size: 13px;
+  color: white;
+}
+
+.row2 {
+  color: white;
+  margin-left: 110px;
+  background-color: #bfbece; /* 背景颜色为粉色 */
+  border-radius: 20px; /* 圆角矩形背景 */
+  padding: 8px; /* 可根据需要添加内边距 */
+  font-size: 13px;
+}
+
+.icon {
+  width: 14px; /* 图标宽度 */
+  height: 14px; /* 图标高度 */
+  font-size: 14px;
+}
+
+.icon1,.icon2{
+  margin-left: 10px;
+  padding: 8px;
+  background-color: #bfbece;
+  width: 14px; /* 图标宽度 */
+  height: 14px; /* 图标高度 */
+  border-radius: 50px;
+}
+
+.text {
+  margin-left: 4px;
+  color: white; /* 文本颜色为白色 */
+}
+
+/* 个人信息 */
+.user-info {
+  background-image: linear-gradient(to top, #666666, white); /* 渐变的大背景 */
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  /* margin-bottom: 10px; */
+  padding: 20px 10px;
+}
+
+.left {
+  margin-right: 10px; /* 左侧空隙 */
+}
+
+.img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+}
+
+.right {
+  flex-grow: 1; /* 右侧占满剩余空间 */
+}
+
+.nickname {
+  font-size: 30px;
+  font-weight: bold;
+  margin-right: 10px;
+  color: #fdfdfd;
+}
+
+.info {
+  display: flex;
+  align-items: center;
+}
+
+.info text {
+  margin-right: 10px;
+  color: #c3c3c3;
+}
+
+.info .img1,.info .img2{
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: #a6a6a6;
+  padding: 1px;
+}
+
+.white {
+  background-color: #ffffff;
+  border-radius: 15px; /* 白色背景圆角 */
+  padding: 10px 0;
+  margin-top: -10px; /* 与图片衔接处 */
+}
+
+.white-all {
+  display: flex;
+}
+
+.complenemt{
+  padding: 0 10px ;
+  /* border: red 1px solid; */
+  margin:1px 10px;
+}
+
+.complenemt .number{
+
+  color:  #171421;
+  font-size: 15px;
+  font-weight: bolder;
+}
+.complenemt text{
+  color: #747474;
+  font-size: 12px;
+}
+
+.add-friend{
+  margin-left: auto; /* 将元素靠右对齐 */
+  margin-right: 10px;
+  background-color: #f3f3f3;
+  padding: 11px 25px;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: bolder;
+}
+
+.introduce {
+  padding: 0 10px;
+  display: flex;
+  align-items: center; /* 垂直居中 */
+}
+
+.text1 {
+  font-size: 14px;
+}
+
+.introduce {
+  display: flex;
+  margin-top: 12px;
+  margin-left: 10px;
+}
+
+.label-info {
+  display: flex;
+  flex-direction: column; /* 垂直排列 */
+}
+
+.icon-introduce {
+  width: 15px; /* 图标宽度 */
+  height: 15px; /* 图标高度 */
+  align-self: flex-start; /* 图标自身对齐到底部 */
+  margin-top: 3px;
+  margin-left: -11px;
+}
+
+.label-row {
+  margin-top: 5px; /* 标签行与上方文本之间的间距 */
+  font-size: 13px;
+}
+
+.religin {
+  color: #888; /* 标签文本的颜色 */
+  margin-bottom: 5px; /* 辽宁·沈阳 与添加年龄、学校等标签之间的间距 */
+  font-size: 12px;
+  background-color: #f3f3f3;
+  padding: 4px;
+  border-radius: 4px;
+}
+
+.text-label {
+  color: #888; /* 标签文本的颜色 */
+  font-size: 12px;
+  background-color: #f3f3f3;
+  padding: 4px;
+  margin-left: 5px;
+  border-radius: 4px;
+}
+
+.nav{
+  margin-top: 10px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.nav view{
+  font-size: 13px;
+  width: 20%;
+  text-align: center;
+  margin-top: 10px;
+}
+
+.nav image{
+  width: 30px;
+  height: 30px;
+}
+
+.nav-text{
+  margin: 10px 10px;
+
+}
+.nav-text image{
+  width: 15px;
+  height: 15px;
+  /* border-bottom: black 1px solid; */
+}
+
+/* 作品 */
+.nav-production {
+  display: flex;
+  flex-wrap: wrap; /* 让图片一行显示三个，并自动换行 */
+  margin-left: 2px;
+}
+
+.nav-production .nav-item {
+  width: 32.8%; /* 让每个项占据三分之一的宽度 */
+  margin-right: 2px;
+  position: relative; /* 使得文本可以相对于图片进行定位 */
+}
+
+.nav-production image {
+  width: 100%; /* 图片填充父容器 */
+}
+
+.nav-production .like-text {
+  position: absolute;
+  bottom: 4px;
+  left: 15px;
+  color: white;
+  padding: 2px 5px; /* 调整文本和边框之间的间距 */
+  border-top-right-radius: 3px; /* 使得左下角文本框有轻微圆角效果 */
+  font-size: 12px; /* 调整字体大小 */
+}
+
+.nav-production .aixin {
+  position: absolute;
+  bottom: 5px;
+  left: 1px;
+  width: 18px;
+  height: 18px;
+}
