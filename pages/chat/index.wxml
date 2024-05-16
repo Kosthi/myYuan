@@ -1,0 +1,33 @@
+<view class="img">
+  <image src="imagines/加.png" mode=""/>
+  <image src="imagines/相机.png" mode=""/>
+  <image src="imagines/搜索 (1).png" mode=""/>
+</view>
+
+
+<view class="nav">
+  <view class="chating-group" wx:for="{{chating}}" wx:key='index'>
+    <navigator url="{{item.url}}" wx:if="{{index >= 2}}">
+      <view class="chating-item">
+        <image class="avatar" src="{{item.img}}" mode=""/>
+        <text class="username">{{item.username}}</text>
+      </view>
+    </navigator>
+  </view>
+</view>
+
+<view class="chat">
+  <view class="chat-item" wx:for="{{chating}}" wx:key='index'>
+    <navigator url="{{item.url}}">
+      <view class="content">
+        <image class="chat-avatar" src="{{item.img}}" mode=""/>
+        <view class="text">
+          <text class="username">{{item.username}}</text>
+          <text class="status">{{item.status}}</text>
+        </view>
+        <image class="grap" src="imagines/相机.png" mode="" wx:if="{{index >= 2}}"/>
+      </view>
+    </navigator>
+  </view>
+  <text class="end">暂时没有更多了</text>
+</view>
