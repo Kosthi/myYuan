@@ -1,3 +1,5 @@
+const app = getApp()
+
 Page({
     /**
      * 页面的初始数据
@@ -5,7 +7,8 @@ Page({
     data: {
         // 在数据中设置一个数组，用于记录每个项目的图片显示状态，默认为隐藏
         imageVisible: [false, false, false, false, false],
-        user: {},
+        userInfo: {},
+        publishList: [],
         menuList: [
             {
                 img: "/assets/image/me/购物车空.png",
@@ -38,73 +41,6 @@ Page({
                 url: "/pages/much/index"
             }
         ],
-        production: [
-            {
-                img: "https://c-ssl.duitang.com/uploads/blog/202302/23/20230223233536_47c88.jpeg",
-                url: "/pages/shop/index",
-                like: "1090"
-            },
-            {
-                img: "https://c-ssl.duitang.com/uploads/blog/202302/23/20230223233536_47c88.jpeg",
-                url: "/pages/shop/index",
-                like: "109"
-            },
-            {
-                img: "https://c-ssl.duitang.com/uploads/blog/202302/23/20230223233536_47c88.jpeg",
-                url: "/pages/shop/index",
-                like: "1090"
-            },
-            {
-                img: "https://c-ssl.duitang.com/uploads/blog/202302/23/20230223233536_47c88.jpeg",
-                url: "/pages/shop/index",
-                like: "1090"
-            },
-            {
-                img: "https://c-ssl.duitang.com/uploads/blog/202302/23/20230223233536_47c88.jpeg",
-                url: "/pages/shop/index",
-                like: "1090"
-            },
-            {
-                img: "https://c-ssl.duitang.com/uploads/blog/202302/23/20230223233536_47c88.jpeg",
-                url: "/pages/shop/index",
-                like: "1090"
-            },
-            {
-                img: "https://c-ssl.duitang.com/uploads/blog/202302/23/20230223233536_47c88.jpeg",
-                url: "/pages/shop/index",
-                like: "1090"
-            },
-            {
-                img: "https://c-ssl.duitang.com/uploads/blog/202302/23/20230223233536_47c88.jpeg",
-                url: "/pages/shop/index",
-                like: "1090"
-            },
-            {
-                img: "https://c-ssl.duitang.com/uploads/blog/202302/23/20230223233536_47c88.jpeg",
-                url: "/pages/shop/index",
-                like: "1090"
-            },
-            {
-                img: "https://c-ssl.duitang.com/uploads/blog/202302/23/20230223233536_47c88.jpeg",
-                url: "/pages/shop/index",
-
-            },
-            {
-                img: "https://c-ssl.duitang.com/uploads/blog/202302/23/20230223233536_47c88.jpeg",
-                url: "/pages/shop/index",
-                like: "1090"
-            },
-            {
-                img: "https://c-ssl.duitang.com/uploads/blog/202302/23/20230223233536_47c88.jpeg",
-                url: "/pages/shop/index",
-                like: "1090"
-            },
-            {
-                img: "https://c-ssl.duitang.com/uploads/blog/202302/23/20230223233536_47c88.jpeg",
-                url: "/pages/shop/index",
-                like: "1090"
-            }
-        ],
     },
 
     // 点击事件处理函数
@@ -118,11 +54,37 @@ Page({
         // 更新数据
         this.setData({
             imageVisible: imageVisible
-        });
+        })
     },
 
     // 生命周期函数--监听页面加载
     onLoad(options) {
+        let token = wx.getStorageSync('token')
+        let userId = wx.getStorageSync('userId')
+
+        getUserInfoPromise(userId, token)
+            .then((userInfo) => {
+                console.log(userInfo)
+                this.setData({
+                    userInfo: userInfo
+                })
+            })
+            .catch((error) => {
+                console.error('Failed to get user info:', error)
+            })
+
+        // Use the Promise to handle the asynchronous operation
+        getPublishListPromise(userId, token)
+            .then((publishList) => {
+                console.log(publishList);
+                // Update the data property
+                this.setData({
+                    publishList: publishList
+                })
+            })
+            .catch((error) => {
+                console.error('Failed to get publish list:', error);
+            })
     },
 
     // 生命周期函数--监听页面初次渲染完成
@@ -131,10 +93,6 @@ Page({
 
     // 生命周期函数--监听页面显示
     onShow() {
-        //加载页面可以获取信息并赋值
-        this.setData({
-            user: wx.getStorageSync('user') || {}
-        })
     },
 
     // 生命周期函数--监听页面隐藏
@@ -157,3 +115,94 @@ Page({
     onShareAppMessage() {
     }
 })
+
+// 在注册或登录成功后会调用/douyin/user/接口拉取当前登录用户的全部信息，并存储到本地
+function getPublishList(userId, token, callback) {
+    const apiUrl = app.serverUrl + '/douyin/publish/list/'
+    wx.request({
+        url: apiUrl,
+        method: 'GET',
+        data: {
+            user_id: userId,
+            token: token
+        },
+        success: function (res) {
+            // 获取用户信息成功的处理逻辑
+            console.log('Get publish list successful:', res.data)
+            // 处理注册成功的响应数据
+            const statusCode = res.data.status_code
+            if (statusCode === 0) {
+                wx.setStorageSync('publishList', res.data.video_list || [])
+                callback(true, "获取视频列表成功")
+            } else {
+                // 注册失败，输出错误信息
+                console.error('Get publish list failed:', res.data.status_msg)
+                callback(false, res.data.status_msg)
+            }
+        },
+        fail: function (error) {
+            // 获取用户信息失败的处理逻辑
+            console.error('Failed to get publish list:', error);
+            callback(false, error)
+        }
+    });
+}
+
+// Wrap the getPublishList function in a Promise
+const getPublishListPromise = (userId, token) => {
+    return new Promise((resolve, reject) => {
+        getPublishList(userId, token, function (success, msg) {
+            if (success) {
+                const publishList = wx.getStorageSync('publishList');
+                resolve(publishList);
+            } else {
+                reject(msg);
+            }
+        });
+    });
+}
+
+// 在注册或登录成功后会调用/douyin/user/接口拉取当前登录用户的全部信息，并存储到本地
+function getUserInfo(userId, token, callback) {
+    const apiUrl = app.serverUrl + '/douyin/user/'
+    wx.request({
+        url: apiUrl,
+        method: 'GET',
+        data: {
+            user_id: userId,
+            token: token
+        },
+        success: function (res) {
+            // 获取用户信息成功的处理逻辑
+            console.log('Get user info successful:', res.data)
+            // 处理注册成功的响应数据
+            const statusCode = res.data.status_code
+            if (statusCode === 0) {
+                wx.setStorageSync('userInfo', res.data.user)
+                callback(true, "获取用户信息成功")
+            } else {
+                // 注册失败，输出错误信息
+                console.error('Get user info failed:', res.data.status_msg)
+                callback(false, res.data.status_msg)
+            }
+        },
+        fail: function (error) {
+            // 获取用户信息失败的处理逻辑
+            console.error('Failed to get user info:', error)
+            callback(false, error)
+        }
+    })
+}
+
+function getUserInfoPromise(userId, token) {
+    return new Promise((resolve, reject) => {
+        getPublishList(userId, token, function (success, msg) {
+            if (success) {
+                const userInfo = wx.getStorageSync('userInfo')
+                resolve(userInfo)
+            } else {
+                reject(msg)
+            }
+        })
+    })
+}

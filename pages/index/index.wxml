@@ -27,7 +27,8 @@
                              src="{{userData.headPic}}"></cover-image>
                 <cover-image class="userinfo-avatar" wx:else data-lecturerId="{{videos[videoIndex].lecturerId}}"
                              catchtap='goUserHome' src="{{videos[videoIndex].icon}}"></cover-image>
-                <cover-image class="userinfo-add" wx:if="{{videos[videoIndex].isfans == 0}}" src="/assets/image/add.png"
+                <cover-image class="userinfo-add" wx:if="{{videos[videoIndex].isfans === 0}}"
+                             src="/assets/image/add.png"
                              data-index="{{videoIndex}}" data-lecturerId="{{videos[videoIndex].lecturerId}}"
                              catchtap='addLecturerFans'></cover-image>
                 <cover-image class="userinfo-add" wx:else src="/assets/image/guanzhu.png" data-index="{{videoIndex}}"

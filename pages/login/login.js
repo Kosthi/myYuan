@@ -76,27 +76,19 @@ Page({
         // 发送登录请求
         userLogin(value.username, value.password, function (success, msg) {
             if (success) {
-                let userId = wx.getStorageSync('userId')
-                let token = wx.getStorageSync('token')
-                getUserInfo(userId, token, function (success, msg) {
-                    if (success) {
-                        wx.showToast({
-                            title: msg,
-                            icon: "success",
-                            success: () => {
-                                // 跳转去首页
-                                setTimeout(() => {
-                                    wx.redirectTo({
-                                        url: '/pages/index/index',
-                                    })
-                                }, 150)
-                            }
-                        })
-                    } else {
-                        wx.showToast({
-                            title: msg,
-                            icon: "error"
-                        })
+                wx.showToast({
+                    title: msg,
+                    icon: "success",
+                    success: () => {
+                        // 跳转去首页
+                        setTimeout(() => {
+                            wx.redirectTo({
+                                url: '/pages/me/me',
+                            })
+                        }, 150)
+                    },
+                    fail: (error) => {
+                        console.error('跳转失败', error);
                     }
                 })
             } else {
@@ -124,30 +116,19 @@ Page({
         // 发送注册请求
         userRegister(value.username, value.password, function (success, msg) {
             if (success) {
-                let userId = wx.getStorageSync('userId')
-                let token = wx.getStorageSync('token')
-                getUserInfo(userId, token, function (success, msg) {
-                    if (success) {
-                        wx.showToast({
-                            title: msg,
-                            icon: "success",
-                            success: () => {
-                                // 跳转去首页
-                                setTimeout(() => {
-                                    wx.redirectTo({
-                                        url: '/pages/index/index',
-                                    })
-                                }, 150)
-                            },
-                            fail: (error) => {
-                                console.error('跳转失败', error);
-                            }
-                        })
-                    } else {
-                        wx.showToast({
-                            title: msg,
-                            icon: "error"
-                        })
+                wx.showToast({
+                    title: msg,
+                    icon: "success",
+                    success: () => {
+                        // 跳转去首页
+                        setTimeout(() => {
+                            wx.redirectTo({
+                                url: '/pages/me/me',
+                            })
+                        }, 150)
+                    },
+                    fail: (error) => {
+                        console.error('跳转失败', error);
                     }
                 })
             } else {
@@ -289,43 +270,5 @@ function userLogin(username, password, callback) {
             console.error('Failed to send user login request:', error)
             callback(false)
         }
-    });
-}
-
-// 在注册或登录成功后会调用/douyin/user/接口拉取当前登录用户的全部信息，并存储到本地
-function getUserInfo(userId, token, callback) {
-    const apiUrl = app.serverUrl + '/douyin/user/'
-    wx.request({
-        url: apiUrl,
-        method: 'GET',
-        data: {
-            user_id: userId,
-            token: token
-        },
-        success: function (res) {
-            // 获取用户信息成功的处理逻辑
-            console.log('Get user info successful:', res.data)
-            // 处理注册成功的响应数据
-            const statusCode = res.data.status_code
-            if (statusCode === 0) {
-                // 注册成功，可以获取用户id和鉴权token
-                // const userId = res.data.user_id
-                // const token = res.data.token
-                // // 在这里处理注册成功后的逻辑，比如保存用户信息到本地存储中
-                // wx.setStorageSync('userId', userId)
-                // wx.setStorageSync('token', token)
-                app.setGlobalUserInfo(res.data.user)
-                callback(true, "获取用户信息成功")
-            } else {
-                // 注册失败，输出错误信息
-                console.error('Get user info failed:', res.data.status_msg)
-                callback(false, res.data.status_msg)
-            }
-        },
-        fail: function (error) {
-            // 获取用户信息失败的处理逻辑
-            console.error('Failed to get user info:', error);
-            callback(false, error)
-        }
-    });
+    })
 }

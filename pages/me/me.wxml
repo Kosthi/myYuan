@@ -20,16 +20,16 @@
 <scroll-view scroll-y="true" style="height: 100vh;">
     <view class="user-info">
         <view class="left">
-            <image class="img" src="{{user.avatar}}" mode=""/>
+            <image class="img" src="{{userInfo.avatar}}" mode=""/>
             <view class="gray-bg"></view> <!-- 灰色背景 -->
         </view>
         <view class="right">
             <view class="info">
-                <view class="nickname">{{user.nickname}}</view>
+                <view class="nickname">{{userInfo.name}}</view>
                 <image class="img1" src="../../assets/image/me/展开.png" mode=""/>
             </view>
             <view class="info">
-                <text> 抖声号：{{user.number}} </text>
+                <text> 抖声号：{{userInfo.id}} </text>
                 <image class="img2" src="../../assets/image/me/二维码 (1).png" mode=""/>
             </view>
         </view>
@@ -37,19 +37,19 @@
     <view class="white"> <!-- 白色背景 -->
         <view class="white-all">
             <view class="complenemt">
-                <view class="number">471</view>
+                <view class="number">{{userInfo.total_favorited}}</view>
                 <text>获赞</text>
             </view>
             <view class="complenemt">
-                <view class="number">471</view>
+                <view class="number">{{userInfo.total_favorited}}</view>
                 <text>获赞</text>
             </view>
             <view class="complenemt">
-                <view class="number">250</view>
+                <view class="number">{{userInfo.follow_count}}</view>
                 <text>关注</text>
             </view>
             <view class="complenemt">
-                <view class="number">222</view>
+                <view class="number">{{userInfo.follower_count}}</view>
                 <text>粉丝</text>
             </view>
             <view class="add-friend">添加朋友</view>
@@ -115,9 +115,9 @@
         </view>
         <!--  -->
         <view class="nav-production">
-            <view wx:for="{{production}}" wx:key="index" class="nav-item">
-                <navigator url="{{item.url}}">
-                    <image src="{{item.img}}" mode=""/>
+            <view wx:for="{{publishList}}" wx:key="index" class="nav-item">
+                <navigator url="{{item.play_url}}">
+                    <image src="{{item.cover_url}}" mode=""/>
                     <image class="aixin" src="../../assets/image/me/爱心.png" mode=""/>
                     <text class="like-text">{{item.like}}</text>
                 </navigator>

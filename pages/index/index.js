@@ -455,9 +455,16 @@ Page({
     },
 
     goHome: function () {
-        wx.redirectTo({
-            url: '/pages/me/me'
-        })
+        let token = wx.getStorageSync('token') || {}
+        if (token) {
+            wx.redirectTo({
+                url: '/pages/me/me'
+            })
+        } else {
+            wx.redirectTo({
+                url: '/pages/login/login'
+            })
+        }
     },
 
     goFollow: function () {

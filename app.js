@@ -33,9 +33,7 @@ App({
             }
         })
     },
-    globalData: {
-        userInfo: null
-    },
+    globalData: {},
     serverUrl: "http://127.0.0.1:8888",
     userInfo: null,
     setGlobalUserInfo: function (user) {
