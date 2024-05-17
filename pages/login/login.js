@@ -1,4 +1,4 @@
-// pages/login/index.js
+// pages/login/login.js
 const app = getApp()
 
 const admins = [

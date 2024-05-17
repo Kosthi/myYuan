@@ -1,4 +1,4 @@
-//index.js
+// index.js
 //获取应用实例
 import * as event from '../../utils/event.js'
 
