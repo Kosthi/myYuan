@@ -35,7 +35,6 @@
 .tag {
     display: flex;
     flex-direction: column;
-
 }
 
 .tag-item {
@@ -86,12 +85,13 @@
     background-color: #fd2a53; /* 粉红色 */
     border-radius: 10px; /* 圆角 */
     padding: 10px 140px;
-    margin: 320px 20px;
+    margin: 20px 20px;
 }
 
 .publish-btn .icon {
     width: 25px;
     height: 25px;
+    margin-right: 5px;
 }
 
 .publish-btn .text {

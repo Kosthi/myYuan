@@ -3,11 +3,12 @@
   "selectedColor": "#ff0000",
   "backgroundColor": "#000000",
   "pages": [
-    "pages/friend/friend",
+    "pages/add/add","pages/locate/locate",
     "pages/index/index",
     "pages/chat/chat",
     "pages/chitchat/chitchat",
-    "pages/add/add",
+    
+    "pages/friend/friend",
     "pages/me/me",
     "pages/login/login",
     "pages/shop/shop",
