@@ -1,0 +1,96 @@
+.img {
+  padding: 0 30px;
+  display: flex; /* 使用 Flex 布局 */
+  justify-content: space-between; /* 图片平均分布在容器中 */
+  align-items: center; /* 垂直居中对齐 */
+}
+
+.img image {
+  width: 25px; /* 图片宽度 */
+  height: 25px; /* 图片高度 */
+}
+
+
+/* 向左滑动头像 */
+.nav {
+  padding: 0 10px;
+  margin-top: 10px;
+  display: flex; /* 将所有组合放置在一行 */
+  overflow-x: auto; /* 如果组合超出屏幕宽度，添加水平滚动条 */
+  white-space: nowrap; /* 防止文字换行 */
+}
+
+.chating-item {
+  display: flex; /* 将图片和文字放置在一行 */
+  flex-direction: column; /* 垂直排列图片和文字 */
+  align-items: center; /* 水平居中对齐 */
+  margin-right: 10px; /* 可根据需要添加间距 */
+  margin-bottom: 10px;
+}
+
+.avatar {
+  border-radius: 50px;
+  margin-top: 20px;
+  width: 80px; /* 图片宽度 */
+  height: 80px; /* 图片高度 */
+  /* margin-left: 10px; */
+  margin-bottom: 15px; /* 调整图片和文字之间的间距 */
+}
+
+.username {
+  font-size: 14px; /* 文字大小 */
+  color: #333; /* 文字颜色 */
+  text-align: center; /* 文字水平居中对齐 */
+}
+
+.chat {
+  display: flex;
+  flex-direction: column;
+}
+
+.chat-item {
+  margin-bottom: 10px; /* 可根据需要调整间距 */
+  margin-left: 10px;
+}
+
+.content {
+  display: flex;
+  align-items: center; /* 垂直居中对齐 */
+}
+
+.content .grap{
+  margin-left: auto;
+  width: 20px;
+  height: 20px;
+  margin-right: 20px;
+}
+
+.chat-avatar {
+  width: 60px; /* 图片宽度 */
+  height: 60px; /* 图片高度 */
+  margin-right: 10px; /* 可根据需要调整图片和文字之间的间距 */
+  border-radius: 50px;
+  margin-left: 10px;
+}
+
+.text {
+  display: flex;
+  flex-direction: column; /* 垂直排列 */
+}
+
+.username {
+  font-size: 16px; /* 用户名字体大小 */
+  color: black; /* 用户名颜色 */
+}
+
+.status {
+  font-size: 13px; /* 状态字体大小 */
+  color: #6b6b6b; /* 状态颜色 */
+}
+
+.end{
+  text-align: center;
+  font-size: 12px;
+  color: #6b6b6b; /* 状态颜色 */
+  margin-bottom: 20px;
+}
