@@ -6,42 +6,44 @@ Page({
         // 在数据中设置一个数组，用于记录每个项目的图片显示状态，默认为隐藏
         imageVisible: [false, false, false, false, false],
         user: {},
-        menuList: [{
-            img: "chat/购物车空.png",
-            title: "抖声商城",
-            url: "/pages/shop/index"
-        },
+        menuList: [
             {
-                img: "chat/观看历史.png",
+                img: "/assets/image/me/购物车空.png",
+                title: "抖声商城",
+                url: "/pages/shop/index"
+            },
+            {
+                img: "/assets/image/me/观看历史.png",
                 title: "观看历史",
                 url: "/pages/history/index"
             },
             {
-                img: "chat/音乐.png",
+                img: "/assets/image/me/音乐.png",
                 title: "抖声音乐",
                 url: "/pages/music/index"
             },
             {
-                img: "chat/我的钱包.png",
+                img: "/assets/image/me/我的钱包.png",
                 title: "抖声外卖",
                 url: "/pages/money/index"
             },
             {
-                img: "chat/我的钱包.png",
+                img: "/assets/image/me/我的钱包.png",
                 title: "我的钱包",
                 url: "/pages/money/index"
             },
             {
-                img: "chat/常用_查看更多.png",
+                img: "/assets/image/me/常用_查看更多.png",
                 title: "查看更多",
                 url: "/pages/much/index"
             }
         ],
-        production: [{
-            img: "https://c-ssl.duitang.com/uploads/blog/202302/23/20230223233536_47c88.jpeg",
-            url: "/pages/shop/index",
-            like: "1090"
-        },
+        production: [
+            {
+                img: "https://c-ssl.duitang.com/uploads/blog/202302/23/20230223233536_47c88.jpeg",
+                url: "/pages/shop/index",
+                like: "1090"
+            },
             {
                 img: "https://c-ssl.duitang.com/uploads/blog/202302/23/20230223233536_47c88.jpeg",
                 url: "/pages/shop/index",
