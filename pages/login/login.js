@@ -86,7 +86,7 @@ Page({
                             success: () => {
                                 // 跳转去首页
                                 setTimeout(() => {
-                                    wx.switchTab({
+                                    wx.redirectTo({
                                         url: '/pages/index/index',
                                     })
                                 }, 150)
@@ -134,10 +134,13 @@ Page({
                             success: () => {
                                 // 跳转去首页
                                 setTimeout(() => {
-                                    wx.switchTab({
+                                    wx.redirectTo({
                                         url: '/pages/index/index',
                                     })
                                 }, 150)
+                            },
+                            fail: (error) => {
+                                console.error('跳转失败', error);
                             }
                         })
                     } else {
