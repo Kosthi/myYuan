@@ -13,80 +13,80 @@ Page({
             //   status:""
             // },
             {
-                img: "chat/新朋友.png",
-                url: "/pages/chitchat/index",
+                img: "../../assets/image/chat/新朋友.png",
+                url: "/pages/chitchat/chitchat",
                 username: "新朋友",
                 status: "没有新通知"
             },
             {
-                img: "chat/消息_互动消息.png",
-                url: "/pages/chitchat/index",
+                img: "../../assets/image/chat/消息_互动消息.png",
+                url: "/pages/chitchat/chitchat",
                 username: "互动消息",
                 status: "没有新通知"
             },
             {
                 img: "https://c-ssl.duitang.com/uploads/blog/202207/19/20220719130845_f0846.jpeg",
-                url: "/pages/chitchat/index",
+                url: "/pages/chitchat/chitchat",
                 username: "民小狗",
                 status: "在线"
             },
             {
                 img: "https://c-ssl.duitang.com/uploads/blog/202207/19/20220719130845_f0846.jpeg",
-                url: "/pages/chitchat/index",
+                url: "/pages/chitchat/chitchat",
                 username: "吴奕民小狗",
                 status: "在线"
             },
             {
                 img: "https://c-ssl.duitang.com/uploads/blog/202207/19/20220719130845_f0846.jpeg",
-                url: "/pages/chitchat/index",
+                url: "/pages/chitchat/chitchat",
                 username: "吴奕民小狗",
                 status: "在线"
             },
             {
                 img: "https://c-ssl.duitang.com/uploads/blog/202207/19/20220719130845_f0846.jpeg",
-                url: "/pages/chitchat/index",
+                url: "/pages/chitchat/chitchat",
                 username: "吴奕民小狗",
                 status: "在线"
             },
             {
                 img: "https://c-ssl.duitang.com/uploads/blog/202207/19/20220719130845_f0846.jpeg",
-                url: "/pages/chitchat/index",
+                url: "/pages/chitchat/chitchat",
                 username: "吴奕民小狗",
                 status: "在线"
             },
             {
                 img: "https://c-ssl.duitang.com/uploads/blog/202207/19/20220719130845_f0846.jpeg",
-                url: "/pages/chitchat/index",
+                url: "/pages/chitchat/chitchat",
                 username: "吴奕民小狗",
                 status: "在线"
             },
             {
                 img: "https://c-ssl.duitang.com/uploads/blog/202207/19/20220719130845_f0846.jpeg",
-                url: "/pages/chitchat/index",
+                url: "/pages/chitchat/chitchat",
                 username: "吴奕民小狗",
                 status: "在线"
             },
             {
                 img: "https://c-ssl.duitang.com/uploads/blog/202207/19/20220719130845_f0846.jpeg",
-                url: "/pages/chitchat/index",
+                url: "/pages/chitchat/chitchat",
                 username: "吴奕民小狗",
                 status: "在线"
             },
             {
                 img: "https://c-ssl.duitang.com/uploads/blog/202207/19/20220719130845_f0846.jpeg",
-                url: "/pages/chitchat/index",
+                url: "/pages/chitchat/chitchat",
                 username: "吴奕民小狗",
                 status: "在线"
             },
             {
                 img: "https://c-ssl.duitang.com/uploads/blog/202207/19/20220719130845_f0846.jpeg",
-                url: "/pages/chitchat/index",
+                url: "/pages/chitchat/chitchat",
                 username: "吴奕民小狗",
                 status: "在线"
             },
             {
                 img: "https://c-ssl.duitang.com/uploads/blog/202207/19/20220719130845_f0846.jpeg",
-                url: "/pages/chitchat/index",
+                url: "/pages/chitchat/chitchat",
                 username: "吴奕民小狗",
                 status: "在线"
             },

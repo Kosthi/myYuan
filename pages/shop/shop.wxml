@@ -1,0 +1,60 @@
+<view class='top' style="padding-Top:{{safeTop+5}}px">
+    <text>城市</text>
+    <view>搜索</view>
+</view>
+
+<swiper autoplay indicator-dots>
+    <swiper-item wx:for='{{bannerList}}' wx:key='index'>
+        <image src="{{item.img2}}"></image>
+    </swiper-item>
+</swiper>
+
+        <!-- 导航列表 -->
+<view class="nav">
+    <view wx:for="{{menuList}}" wx:key='index'>
+        <navigator url="/pages/detail/index">
+            <image src="{{item.img}}" mode=""/>
+            <text>
+                {{item.title}}
+            </text>
+        </navigator>
+    </view>
+</view>
+
+        <!-- 推荐列表 -->
+<view class="title">
+    推荐列表
+</view>
+
+        <!-- <view class="box">
+          <view class="shop-item" wx:for="{{shopList}}">
+          <image src="{{item.img1}}" mode=""/>
+            <view class="proname">
+              {{item.proname}}
+            </view>
+          </view>
+        </view> -->
+
+<view class="shop">
+    <view class="shop-item" wx:for="{{shopList}}" wx:key="index">
+        <navigator url="/pages/detail/index?id={{item.proid}}">
+            <image src="{{item.img1}}" mode=""/>
+            <view class="proname">{{item.proname}}</view>
+            <view style="color: red;">{{item.originprice}}</view>
+        </navigator>
+    </view>
+</view>
+
+<view class="loading">
+    加载中
+</view>
+
+        <!-- <view style="height: 100px"></view> -->
+
+        <!-- <view class="page">
+          <view class="{{page==(item+1)?'active':''}}"
+          bindtap="setPage" wx:for="{{10}}" data-page="{{item+1}}" wx:key="10">
+            {{item+1}}
+          </view>
+        </view> -->
+

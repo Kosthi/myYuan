@@ -1,0 +1,23 @@
+<view class="input-container">
+    <textarea class="input-field" placeholder="添加作品描述"></textarea>
+    <image class="icon" src="/assets/image/friend/添加视频.png" bindtap="chooseVideo"/>
+</view>
+
+<view class="tag">
+    <view class="tag-item" wx:for="{{tag}}" wx:key='index'>
+        <navigator url="{{item.url}}">
+            <view class="content">
+                <image class="tag-avatar" src="{{item.img}}" mode=""/>
+                <view class="text">
+                    <text class="username">{{item.username}}</text>
+                </view>
+                <view class="tag-end">></view>
+            </view>
+        </navigator>
+    </view>
+</view>
+
+<view class="publish-btn" bindtap="handlePublish">
+    <image class="icon" src="/assets/image/friend/上箭头 (1).png"/>
+    <text class="text">发布</text>
+</view>
