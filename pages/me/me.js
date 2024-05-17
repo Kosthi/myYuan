@@ -7,32 +7,32 @@ Page({
         imageVisible: [false, false, false, false, false],
         user: {},
         menuList: [{
-            img: "imagines/购物车空.png",
+            img: "chat/购物车空.png",
             title: "抖声商城",
             url: "/pages/shop/index"
         },
             {
-                img: "imagines/观看历史.png",
+                img: "chat/观看历史.png",
                 title: "观看历史",
                 url: "/pages/history/index"
             },
             {
-                img: "imagines/音乐.png",
+                img: "chat/音乐.png",
                 title: "抖声音乐",
                 url: "/pages/music/index"
             },
             {
-                img: "imagines/我的钱包.png",
+                img: "chat/我的钱包.png",
                 title: "抖声外卖",
                 url: "/pages/money/index"
             },
             {
-                img: "imagines/我的钱包.png",
+                img: "chat/我的钱包.png",
                 title: "我的钱包",
                 url: "/pages/money/index"
             },
             {
-                img: "imagines/常用_查看更多.png",
+                img: "chat/常用_查看更多.png",
                 title: "查看更多",
                 url: "/pages/much/index"
             }

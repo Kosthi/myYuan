@@ -1,18 +1,18 @@
 <view class="header">
     <!-- 第一行：图标+编辑资料 -->
     <view class="row1">
-        <image class="icon" src="imagines/编辑.png"></image>
+        <image class="icon" src="../../assets/image/me/编辑.png"></image>
         <text class="text">编辑资料</text>
     </view>
     <!-- 第一行：图标+新访客 -->
     <view class="row2">
-        <image class="icon" src="imagines/访客.png"></image>
+        <image class="icon" src="../../assets/image/me/访客.png"></image>
         <text class="text">新访客 20</text>
     </view>
     <!-- 第一行：图标 -->
     <view class="row3">
-        <image class="icon1" src="imagines/搜索.png"></image>
-        <image class="icon2" src="imagines/三横.png"></image>
+        <image class="icon1" src="../../assets/image/me/搜索.png"></image>
+        <image class="icon2" src="../../assets/image/me/三横.png"></image>
     </view>
 </view>
 
@@ -26,11 +26,11 @@
         <view class="right">
             <view class="info">
                 <view class="nickname">{{user.nickname}}</view>
-                <image class="img1" src="imagines/展开.png" mode=""/>
+                <image class="img1" src="../../assets/image/me/展开.png" mode=""/>
             </view>
             <view class="info">
                 <text> 抖声号：{{user.number}} </text>
-                <image class="img2" src="imagines/二维码 (1).png" mode=""/>
+                <image class="img2" src="../../assets/image/me/二维码 (1).png" mode=""/>
             </view>
         </view>
     </view>
@@ -64,7 +64,7 @@
                     <text class="text-label">+ 添加年龄、学校等标签</text>
                 </view>
             </div>
-            <image class="icon-introduce" src="imagines/编辑 (1).png"></image>
+            <image class="icon-introduce" src="../../assets/image/me/编辑 (1).png"></image>
         </view>
 
         <!-- <view class="nav">
@@ -91,26 +91,26 @@
         <view class="nav-text">
             <view class="na-text" data-index="0" bindtap="toggleImage">
                 <text>作品</text>
-                <image src="imagines/展开 (1).png" mode="" data-index="0"/>
+                <image src="../../assets/image/me/展开 (1).png" mode="" data-index="0"/>
             </view>
 
             <!-- <view class="na-text" data-index="1" bindtap="toggleImage">
               <text>时刻</text>
-              <image src="imagines/展开 (1).png" mode="" data-index="1" />
+              <image src="chat/展开 (1).png" mode="" data-index="1" />
             </view>
             <view class="na-text" data-index="2" bindtap="toggleImage">
               <text>推荐</text>
-              <image src="imagines/展开 (1).png" mode="" data-index="2" />
+              <image src="chat/展开 (1).png" mode="" data-index="2" />
             </view>
 
             <view class="na-text" data-index="3" bindtap="toggleImage">
               <text>收藏</text>
-              <image src="imagines/展开 (1).png" mode="" data-index="3" />
+              <image src="chat/展开 (1).png" mode="" data-index="3" />
             </view>
 
             <view class="na-text" data-index="4" bindtap="toggleImage">
               <text>喜欢</text>
-              <image src="imagines/展开 (1).png" mode="" data-index="4" />
+              <image src="chat/展开 (1).png" mode="" data-index="4" />
             </view> -->
         </view>
         <!--  -->
@@ -118,7 +118,7 @@
             <view wx:for="{{production}}" wx:key="index" class="nav-item">
                 <navigator url="{{item.url}}">
                     <image src="{{item.img}}" mode=""/>
-                    <image class="aixin" src="imagines/爱心.png" mode=""/>
+                    <image class="aixin" src="../../assets/image/me/爱心.png" mode=""/>
                     <text class="like-text">{{item.like}}</text>
                 </navigator>
             </view>

@@ -13,13 +13,13 @@ Page({
             //   status:""
             // },
             {
-                img: "imagines/新朋友.png",
+                img: "chat/新朋友.png",
                 url: "/pages/chitchat/index",
                 username: "新朋友",
                 status: "没有新通知"
             },
             {
-                img: "imagines/消息_互动消息.png",
+                img: "chat/消息_互动消息.png",
                 url: "/pages/chitchat/index",
                 username: "互动消息",
                 status: "没有新通知"

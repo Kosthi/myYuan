@@ -2,7 +2,9 @@
   "pages": [
     "pages/index/index",
     "pages/logs/logs",
-    "pages/login/login"
+    "pages/login/login",
+    "pages/me/me",
+    "pages/chat/chat"
   ],
   "window": {
     "backgroundTextStyle": "light",

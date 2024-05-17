@@ -11,10 +11,10 @@
         </view>
 
         <view class="user-agreement">
-            <image src="../../imagines/未选中圆圈.png" mode="aspectFill"
+            <image src="../../assets/image/未选中圆圈.png" mode="aspectFill"
                    style="width: 20px; height: 20px; margin-right: 5px;" bindtap="agreeTerms" data-agree="{{isAgreed}}"
                    hidden="{{isAgreed}}"/>
-            <image src="../../imagines/圆圈勾选.png" mode="aspectFill"
+            <image src="../../assets/image/圆圈勾选.png" mode="aspectFill"
                    style="width: 20px; height: 20px; margin-right: 5px;" bindtap="agreeTerms" data-agree="{{isAgreed}}"
                    hidden="{{!isAgreed}}"/>
             <text class="user-item">已阅读并同意</text>

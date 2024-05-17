@@ -456,7 +456,7 @@ Page({
 
     goHome: function () {
         wx.redirectTo({
-            url: '/pages/login/login'
+            url: '/pages/me/me'
         })
     },
 

@@ -1,7 +1,7 @@
 <view class="img">
-    <image src="imagines/加.png" mode=""/>
-    <image src="imagines/相机.png" mode=""/>
-    <image src="imagines/搜索 (1).png" mode=""/>
+    <image src="../../assets/image/chat/加.png" mode=""/>
+    <image src="../../assets/image/chat/相机.png" mode=""/>
+    <image src="../../assets/image/chat/搜索 (1).png" mode=""/>
 </view>
 
 
@@ -25,7 +25,7 @@
                     <text class="username">{{item.username}}</text>
                     <text class="status">{{item.status}}</text>
                 </view>
-                <image class="grap" src="imagines/相机.png" mode="" wx:if="{{index >= 2}}"/>
+                <image class="grap" src="../../assets/image/chat/相机.png" mode="" wx:if="{{index >= 2}}"/>
             </view>
         </navigator>
     </view>
