@@ -30,7 +30,7 @@ Page({
             {
                 img: "/assets/image/me/退出.png",
                 title: "退出",
-                url: "/pages/login/login"
+                url: "/pages/index/index"
             },
             {
                 img: "/assets/image/me/常用_查看更多.png",

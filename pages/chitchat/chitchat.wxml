@@ -1,2 +1,9 @@
-<!--pages/chitchat/index.wxml-->
-<text>pages/chitchat/index.wxml</text>
+<view class="container" style="--container-height: {{containerHeight}};">
+  <view class="chat">
+    <image src="../../assets/image/chitchat/相机.png" mode=""/>
+    <input placeholder="发送消息" bindinput="handleInput" bindconfirm="confirm"/>
+    <image src="../../assets/image/chitchat/语音.png" mode=""/>
+    <image src="../../assets/image/chitchat/表情1.png" mode=""/>
+    <image src="../../assets/image/chitchat/添加.png" mode=""/>
+  </view>
+</view>
