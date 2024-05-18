@@ -1,4 +1,4 @@
-// pages/much/about.js
+// pages/much/much.js
 Page({
 
     /**

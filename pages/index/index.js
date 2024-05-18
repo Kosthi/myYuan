@@ -454,39 +454,6 @@ Page({
         })
     },
 
-    goHome: function () {
-        let token = wx.getStorageSync('token') || {}
-        if (token) {
-            wx.redirectTo({
-                url: '/pages/me/me'
-            })
-        } else {
-            wx.redirectTo({
-                url: '/pages/login/login'
-            })
-        }
-    },
-
-    goFollow: function () {
-        wx.redirectTo({
-            url: '/pages/follow/follow'
-        })
-    },
-
-    goSearch: function () {
-        wx.redirectTo({
-            url: '/pages/search/search'
-        })
-    },
-
-    goUserHome: function (e) {
-        var lecrid = e.currentTarget.dataset.lecturerid
-        app.globalData.userId = lecrid
-        wx.navigateTo({
-            url: '/pages/home/home'
-        })
-    },
-
     contentInput: function (e) {
         this.setData({
             inputValue: e.detail.value

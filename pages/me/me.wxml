@@ -12,7 +12,7 @@
     <!-- 第一行：图标 -->
     <view class="row3">
         <image class="icon1" src="../../assets/image/me/搜索.png"></image>
-        <image class="icon2" src="../../assets/image/me/三横.png"></image>
+        <image bindtap="switchTabIndex" class="icon2" src="../../assets/image/me/退出.png"></image>
     </view>
 </view>
 

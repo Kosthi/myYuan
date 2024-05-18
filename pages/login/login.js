@@ -82,8 +82,8 @@ Page({
                     success: () => {
                         // 跳转去首页
                         setTimeout(() => {
-                            wx.redirectTo({
-                                url: '/pages/me/me',
+                            wx.switchTab({
+                                url: '/pages/me/me'
                             })
                         }, 150)
                     },
@@ -122,7 +122,7 @@ Page({
                     success: () => {
                         // 跳转去首页
                         setTimeout(() => {
-                            wx.redirectTo({
+                            wx.switchTab({
                                 url: '/pages/me/me',
                             })
                         }, 150)

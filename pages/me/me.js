@@ -13,34 +13,37 @@ Page({
             {
                 img: "/assets/image/me/购物车空.png",
                 title: "抖声商城",
-                url: "/pages/shop/index"
+                url: "/pages/shop/shop"
             },
             {
                 img: "/assets/image/me/观看历史.png",
                 title: "观看历史",
-                url: "/pages/history/index"
+                url: "/pages/history/history"
             },
             {
                 img: "/assets/image/me/音乐.png",
                 title: "抖声音乐",
-                url: "/pages/music/index"
+                url: "/pages/music/music"
             },
             {
                 img: "/assets/image/me/我的钱包.png",
                 title: "抖声外卖",
-                url: "/pages/money/index"
-            },
-            {
-                img: "/assets/image/me/我的钱包.png",
-                title: "我的钱包",
-                url: "/pages/money/index"
+                url: "/pages/money/money"
             },
             {
                 img: "/assets/image/me/常用_查看更多.png",
                 title: "查看更多",
-                url: "/pages/much/index"
+                url: "/pages/much/much"
             }
         ],
+    },
+
+    // 退出登录
+    switchTabIndex: function () {
+        wx.setStorageSync('token', '')
+        wx.switchTab({
+            url: '/pages/index/index'
+        })
     },
 
     // 点击事件处理函数
@@ -59,7 +62,23 @@ Page({
 
     // 生命周期函数--监听页面加载
     onLoad(options) {
-        let token = wx.getStorageSync('token')
+    },
+
+    // 生命周期函数--监听页面初次渲染完成
+    onReady() {
+    },
+
+    // 生命周期函数--监听页面显示
+    onShow() {
+        let token = wx.getStorageSync('token') || ''
+        // console.log('token', wx.getStorageSync('token'))
+        if (token === '') {
+            wx.redirectTo({
+                url: '/pages/login/login'
+            })
+            return
+        }
+
         let userId = wx.getStorageSync('userId')
 
         getUserInfoPromise(userId, token)
@@ -85,14 +104,6 @@ Page({
             .catch((error) => {
                 console.error('Failed to get publish list:', error);
             })
-    },
-
-    // 生命周期函数--监听页面初次渲染完成
-    onReady() {
-    },
-
-    // 生命周期函数--监听页面显示
-    onShow() {
     },
 
     // 生命周期函数--监听页面隐藏

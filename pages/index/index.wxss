@@ -94,14 +94,14 @@ video {
 
 .jindu {
     position: fixed;
-    bottom: 100rpx;
+    bottom: 0;
     height: 5rpx;
     background-color: white;
 }
 
 .jindu-back {
     position: fixed;
-    bottom: 100rpx;
+    bottom: 0;
     width: 100%;
     height: 5rpx;
     background-color: gray;

@@ -61,10 +61,6 @@
           <cover-image class="icon-play" wx:if="{{!playState && !animationShow}}" src='/assets/image/play.png' hidden='{{isPlay}}'></cover-image>
         </cover-view> -->
 
-        <!-- 进度条  -->
-        <cover-view class="jindu-back"></cover-view>
-        <cover-view class="jindu" style='width: {{percent}}%'></cover-view>
-
         <!-- 描述  -->
         <cover-view class="desc">
             <cover-view class='desc-content tag-content'>
@@ -78,24 +74,9 @@
             </cover-view>
         </cover-view>
 
-        <!-- 底部 -->
-        <cover-view class="footer">
-            <cover-view class='apply apply-active'>
-                <cover-view>最新</cover-view>
-            </cover-view>
-            <cover-view class='apply' catchtap='goFollow'>
-                <cover-view>关注</cover-view>
-            </cover-view>
-            <cover-view class='apply' catchtap='goAddVideo'>
-                <cover-image class="icon" src='/assets/image/addVideo.png' bindtap='apply'></cover-image>
-            </cover-view>
-            <cover-view class='apply' catchtap='goSearch'>
-                <cover-view>发现</cover-view>
-            </cover-view>
-            <cover-view class='apply' catchtap='goHome'>
-                <cover-view>我的哼</cover-view>
-            </cover-view>
-        </cover-view>
+        <!-- 进度条  -->
+        <cover-view class="jindu-back"></cover-view>
+        <cover-view class="jindu" style='width: {{percent}}%'></cover-view>
     </video>
     <image class="play-btn" wx:if="{{!playState && !animationShow}}" src="/assets/image/play.png"></image>
     <!-- <progress class="progress" percent="{{percent}}" activeColor="#ffffff" backgroundColor="#A9A9A9" stroke-width="1"  wx:if="{{!animationShow}}" /> -->
@@ -152,27 +133,4 @@
             <text>亲,没有获取到数据哦!</text>
         </view>
     </view>
-
-    <!-- 底部 -->
-    <view class="footer">
-        <!-- <cover-view class=''>
-          最新
-        </cover-view> -->
-        <view class='apply apply-active'>
-            <view>最新</view>
-        </view>
-        <view class='apply' catchtap='goFollow'>
-            <view>关注</view>
-        </view>
-        <view class='apply' catchtap='goAddVideo'>
-            <image class="icon" src='/assets/image/addVideo.png' bindtap='apply'></image>
-        </view>
-        <view class='apply' catchtap='goSearch'>
-            <view>发现</view>
-        </view>
-        <view class='apply' catchtap='goHome'>
-            <view>我的</view>
-        </view>
-    </view>
-    <!-- </view> -->
 </view>
