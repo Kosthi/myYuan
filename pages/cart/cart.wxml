@@ -1,0 +1,7 @@
+<navigator url="/pages/detail/index?id=123&name=李四&age=20" open-type="navigate">
+    <image src="https://inews.gtimg.com/om_bt/OHyQqgC_5oi4Vm0tlH49XvJzqNBHo2Zryxx5F_be5N2cIAA/1000" mode=""/>
+</navigator>
+
+<navigator url="/pages/index/index" open-type="switchTab">
+    去首页
+</navigator>

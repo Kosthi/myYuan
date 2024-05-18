@@ -1,4 +1,4 @@
-<!--index.wxml-->
+<!--about.wxml-->
 <wxs src="../../utils/utils.wxs" module="tools"></wxs>
 <view class="container1" bindtap="changePlayStatus">
     <!-- <view class='content' wx:if="{{videos.length!=0}}"> -->

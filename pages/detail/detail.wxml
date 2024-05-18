@@ -1,0 +1,43 @@
+<view class="cover">
+    <image bind:tap="showfn" src="{{info.img1}}" mode=""/>
+</view>
+
+<view class="proname">
+    {{info.proname}}
+</view>
+
+<view class="info-row">
+    <image src="../../imagines/地址.png" class="info-icon address-icon"/>
+    <text class="info-text">配送地址：辽宁省 沈阳市 铁西区 沈阳工业大学（中央校区）</text>
+</view>
+
+<view class="info-row">
+    <image src="../../imagines/仓库_库存.png" class="info-icon stock-icon"/>
+    <text>库存 :{{info.stock}}</text>
+</view>
+
+<view class="info-row">
+    <image src="../../imagines/门票售卖.png" class="info-icon logistics-icon"/>
+    <text>已经售卖 :{{info.sales}}</text>
+</view>
+
+<view>
+    <text class="price">{{info.originprice * info.discount / 10}}</text>
+    <text class="originPrice">原价{{info.originprice}}</text>
+</view>
+
+<view class="model" wx:if="{{show}}" bindtap="hideFn">
+    <view class="count">
+        {{index + 1}}/{{imgs.length}}
+    </view>
+
+    <swiper circular bindchange="changeIndex" catchtap="showfn">
+        <swiper-item wx:for="{{imgs}}" wx:key="index">
+            <image src="{{item}}" mode=""/>
+        </swiper-item>
+    </swiper>
+
+    <view>
+
+    </view>
+</view>
