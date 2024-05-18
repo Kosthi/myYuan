@@ -10,98 +10,98 @@ Page({
             {
                 img: "/assets/image/me/购物车空.png",
                 title: "抖声商城",
-                url: "/pages/shop/index"
+                url: "/pages/shop/shop"
             },
             {
                 img: "/assets/image/me/观看历史.png",
                 title: "观看历史",
-                url: "/pages/history/index"
+                url: "/pages/history/history"
             },
             {
                 img: "/assets/image/me/音乐.png",
                 title: "抖声音乐",
-                url: "/pages/music/index"
+                url: "/pages/music/music"
             },
             {
-                img: "/assets/image/me/我的钱包.png",
+                img: "/assets/image/me/外卖订单.png",
                 title: "抖声外卖",
-                url: "/pages/money/index"
+                url: "/pages/money/money"
             },
             {
-                img: "/assets/image/me/我的钱包.png",
-                title: "我的钱包",
-                url: "/pages/money/index"
+                img: "/assets/image/me/退出.png",
+                title: "退出",
+                url: "/pages/login/login"
             },
             {
                 img: "/assets/image/me/常用_查看更多.png",
                 title: "查看更多",
-                url: "/pages/much/index"
+                url: "/pages/much/much"
             }
         ],
         production: [
             {
                 img: "https://c-ssl.duitang.com/uploads/blog/202302/23/20230223233536_47c88.jpeg",
-                url: "/pages/shop/index",
+                url: "/pages/shop/shop",
                 like: "1090"
             },
             {
                 img: "https://c-ssl.duitang.com/uploads/blog/202302/23/20230223233536_47c88.jpeg",
-                url: "/pages/shop/index",
+                url: "/pages/shop/shop",
                 like: "109"
             },
             {
                 img: "https://c-ssl.duitang.com/uploads/blog/202302/23/20230223233536_47c88.jpeg",
-                url: "/pages/shop/index",
+                url: "/pages/shop/shop",
                 like: "1090"
             },
             {
                 img: "https://c-ssl.duitang.com/uploads/blog/202302/23/20230223233536_47c88.jpeg",
-                url: "/pages/shop/index",
+                url: "/pages/shop/shop",
                 like: "1090"
             },
             {
                 img: "https://c-ssl.duitang.com/uploads/blog/202302/23/20230223233536_47c88.jpeg",
-                url: "/pages/shop/index",
+                url: "/pages/shop/shop",
                 like: "1090"
             },
             {
                 img: "https://c-ssl.duitang.com/uploads/blog/202302/23/20230223233536_47c88.jpeg",
-                url: "/pages/shop/index",
+                url: "/pages/shop/shop",
                 like: "1090"
             },
             {
                 img: "https://c-ssl.duitang.com/uploads/blog/202302/23/20230223233536_47c88.jpeg",
-                url: "/pages/shop/index",
+                url: "/pages/shop/shop",
                 like: "1090"
             },
             {
                 img: "https://c-ssl.duitang.com/uploads/blog/202302/23/20230223233536_47c88.jpeg",
-                url: "/pages/shop/index",
+                url: "/pages/shop/shop",
                 like: "1090"
             },
             {
                 img: "https://c-ssl.duitang.com/uploads/blog/202302/23/20230223233536_47c88.jpeg",
-                url: "/pages/shop/index",
+                url: "/pages/shop/shop",
                 like: "1090"
             },
             {
                 img: "https://c-ssl.duitang.com/uploads/blog/202302/23/20230223233536_47c88.jpeg",
-                url: "/pages/shop/index",
+                url: "/pages/shop/shop",
 
             },
             {
                 img: "https://c-ssl.duitang.com/uploads/blog/202302/23/20230223233536_47c88.jpeg",
-                url: "/pages/shop/index",
+                url: "/pages/shop/shop",
                 like: "1090"
             },
             {
                 img: "https://c-ssl.duitang.com/uploads/blog/202302/23/20230223233536_47c88.jpeg",
-                url: "/pages/shop/index",
+                url: "/pages/shop/shop",
                 like: "1090"
             },
             {
                 img: "https://c-ssl.duitang.com/uploads/blog/202302/23/20230223233536_47c88.jpeg",
-                url: "/pages/shop/index",
+                url: "/pages/shop/shop",
                 like: "1090"
             }
         ],

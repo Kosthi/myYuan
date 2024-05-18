@@ -1,12 +1,12 @@
 <view class="c">
-  <view class="search">
-    <image src="../../assets/image/chat/搜索 (1).png" mode=""/>
-    <input placeholder="搜索位置" bindinput="handleSearchInput" bindconfirm="search"/>
-  </view>
-  <view class='li' wx:for='{{newList}}' wx:key="index">
-    <view class="locate">
-      <text class="place">{{item.place}}</text>
-      <text class="location">{{item.location}}</text>
+    <view class="search">
+        <image src="../../assets/image/chat/搜索 (1).png" mode=""/>
+        <input placeholder="搜索位置" bindinput="handleSearchInput" bindconfirm="search"/>
     </view>
-  </view>
+    <view class='li' wx:for='{{newList}}' wx:key="index">
+        <view class="locate">
+            <text class="place">{{item.place}}</text>
+            <text class="location">{{item.location}}</text>
+        </view>
+    </view>
 </view>
