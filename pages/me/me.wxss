@@ -256,8 +256,8 @@
 
 .nav-production .like-text {
     position: absolute;
-    bottom: 4px;
-    left: 15px;
+    bottom: 2px;
+    left: 18px;
     color: white;
     padding: 2px 5px; /* 调整文本和边框之间的间距 */
     border-top-right-radius: 3px; /* 使得左下角文本框有轻微圆角效果 */

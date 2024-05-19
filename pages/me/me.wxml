@@ -41,8 +41,8 @@
                 <text>获赞</text>
             </view>
             <view class="complenemt">
-                <view class="number">{{userInfo.total_favorited}}</view>
-                <text>获赞</text>
+                <view class="number">{{0}}</view>
+                <text>好友</text>
             </view>
             <view class="complenemt">
                 <view class="number">{{userInfo.follow_count}}</view>
@@ -119,11 +119,9 @@
                 <navigator url="{{item.play_url}}">
                     <image src="{{item.cover_url}}" mode=""/>
                     <image class="aixin" src="../../assets/image/me/爱心.png" mode=""/>
-                    <text class="like-text">{{item.like}}</text>
+                    <text class="like-text">{{item.favorite_count}}</text>
                 </navigator>
             </view>
         </view>
-
-
     </view>
 </scroll-view>
