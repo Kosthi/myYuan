@@ -1,11 +1,11 @@
 <!--about.wxml-->
 <wxs src="../../utils/utils.wxs" module="tools"></wxs>
 <view class="container1" bindtap="changePlayStatus">
-    <!-- <view class='content' wx:if="{{videos.length!=0}}"> -->
+    <!-- <view class='content' wx:if="{{videoList.length!=0}}"> -->
     <view class="animation-wrapper" animation="{{animation}}">
-        <block wx:for="{{videos}}" wx:key="{{item.poster}}">
+        <block wx:for="{{videoList}}" wx:key="{{item.poster}}">
             <view class="animation-image-wrapper">
-                <image class="animation-image" src="{{item.poster}}"></image>
+                <image class="animation-image" src="{{item.cover_url}}"></image>
             </view>
         </block>
     </view>
@@ -15,45 +15,51 @@
 
     <video class="vvideo" bindtimeupdate="bindtimeupdate" id="kdvideo" bindtouchstart="touchStart"
            bindtouchend="touchEnd" bindtouchcancel="touchCancel" binderror="binderror" autoplay="{{autoplay}}"
-           objectFit="cover" hidden="{{animationShow}}" src="{{videos[videoIndex].videoUrl}}" bindplay="bindplay"
+           objectFit="cover" hidden="{{animationShow}}" src="{{videoList[videoIndex].play_url}}" bindplay="bindplay"
            controls="{{controls}}" loop="true">
         <cover-view class="tools">
             <cover-view class='user-image'>
-                <cover-image class="userinfo-avatar" wx:if="{{!videos[videoIndex].icon && !userData.headPic}}"
-                             data-lecturerId="{{videos[videoIndex].lecturerId}}" catchtap='goUserHome'
+                <cover-image class="userinfo-avatar"
+                             wx:if="{{!videoList[videoIndex].author.avator && !userData.headPic}}"
+                             data-lecturerId="{{videoList[videoIndex].lecturerId}}" catchtap='goUserHome'
                              src="/assets/image/userImage.png"></cover-image>
-                <cover-image class="userinfo-avatar" wx:elif="{{!videos[videoIndex].icon}}"
-                             data-lecturerId="{{videos[videoIndex].lecturerId}}" catchtap='goUserHome'
+                <cover-image class="userinfo-avatar" wx:elif="{{!videoList[videoIndex].author.avator}}"
+                             data-lecturerId="{{videoList[videoIndex].lecturerId}}" catchtap='goUserHome'
                              src="{{userData.headPic}}"></cover-image>
-                <cover-image class="userinfo-avatar" wx:else data-lecturerId="{{videos[videoIndex].lecturerId}}"
-                             catchtap='goUserHome' src="{{videos[videoIndex].icon}}"></cover-image>
-                <cover-image class="userinfo-add" wx:if="{{videos[videoIndex].isfans === 0}}"
+                <cover-image class="userinfo-avatar" wx:else data-lecturerId="{{videoList[videoIndex].author.avator}}"
+                             catchtap='goUserHome' src="{{videoList[videoIndex].icon}}"></cover-image>
+                <cover-image class="userinfo-add" wx:if="{{videoList[videoIndex].isfans === 0}}"
                              src="/assets/image/add.png"
-                             data-index="{{videoIndex}}" data-lecturerId="{{videos[videoIndex].lecturerId}}"
+                             data-index="{{videoIndex}}" data-lecturerId="{{videoList[videoIndex].lecturerId}}"
                              catchtap='addLecturerFans'></cover-image>
                 <cover-image class="userinfo-add" wx:else src="/assets/image/guanzhu.png" data-index="{{videoIndex}}"
-                             data-lecturerId="{{videos[videoIndex].lecturerId}}"
+                             data-lecturerId="{{videoList[videoIndex].lecturerId}}"
                              catchtap='delLecturerFans'></cover-image>
             </cover-view>
             <cover-view>
-                <cover-image class="icon right-icon" data-likeNum="{{videos[videoIndex].likenum}}"
-                             data-index="{{videoIndex}}" data-videoId="{{videos[videoIndex].contentId}}"
-                             wx:if="{{videos[videoIndex].isLike === 0}}" src='/assets/image/start.png'
+                <cover-image class="icon right-icon" data-favoritecount="{{videoList[videoIndex].favorite_count}}"
+                             data-index="{{videoIndex}}" data-videoid="{{videoList[videoIndex].id}}"
+                             data-isfavorite="{{videoList[videoIndex].is_favorite === true}}"
+                             wx:if="{{videoList[videoIndex].is_favorite === false}}" src='/assets/image/start.png'
                              catchtap='doubleTap'></cover-image>
-                <cover-image class="icon right-icon" wx:else src='/assets/image/active.png'></cover-image>
-                <cover-view class="text">{{videos[videoIndex].likenum}}</cover-view>
+                <cover-image class="icon right-icon" data-index="{{videoIndex}}"
+                             data-videoid="{{videoList[videoIndex].id}}"
+                             data-isfavorite="{{videoList[videoIndex].is_favorite === true}}" catchtap='doubleTap'
+                             wx:else
+                             src='/assets/image/active.png'></cover-image>
+                <cover-view class="text">{{videoList[videoIndex].favorite_count}}</cover-view>
             </cover-view>
-            <cover-view catchtap='showTalks' data-videoId="{{videos[videoIndex].contentId}}"
-                        data-commnetnum="{{videos[videoIndex].commnetnum}}">
+            <cover-view catchtap='showTalks' data-videoid="{{videoList[videoIndex].id}}"
+                        data-commnetnum="{{videoList[videoIndex].comment_count}}">
                 <cover-image class="icon right-icon" src='/assets/image/content.png'></cover-image>
-                <cover-view class="text">{{videos[videoIndex].commnetnum}}</cover-view>
+                <cover-view class="text">{{videoList[videoIndex].comment_count}}</cover-view>
             </cover-view>
             <cover-view>
                 <cover-image class="icon right-icon" src='/assets/image/shang.png' catchtap='onShowModal'
-                             data-rewardNum="{{videos[videoIndex].rewardNum}}" data-index="{{videoIndex}}"
-                             data-conid="{{videos[videoIndex].contentId}}"
-                             data-lecid="{{videos[videoIndex].lecturerId}}"></cover-image>
-                <cover-view class="text">{{videos[videoIndex].rewardNum}}</cover-view>
+                             data-rewardNum="{{videoList[videoIndex].rewardNum}}" data-index="{{videoIndex}}"
+                             data-conid="{{videoList[videoIndex].id}}"
+                             data-lecid="{{videoList[videoIndex].lecturerId}}"></cover-image>
+                <cover-view class="text">{{videoList[videoIndex].rewardNum}}</cover-view>
             </cover-view>
         </cover-view>
         <!-- 暂停播放按钮  -->
@@ -65,12 +71,12 @@
         <cover-view class="desc">
             <cover-view class='desc-content tag-content'>
                 <cover-image class="icon huati" src='/assets/image/huati.png'></cover-image>
-                <cover-view class="desc-text tag-text" wx:key="index" wx:for="{{videos[videoIndex].tagList}}">
+                <cover-view class="desc-text tag-text" wx:key="index" wx:for="{{videoList[videoIndex].tagList}}">
                     {{item.tagName}}
                 </cover-view>
             </cover-view>
             <cover-view class='desc-content tag'>
-                <cover-view class="desc-text">{{videos[videoIndex].description}}</cover-view>
+                <cover-view class="desc-text">{{videoList[videoIndex].title}}</cover-view>
             </cover-view>
         </cover-view>
 
@@ -100,9 +106,9 @@
             <scroll-view class='talk-body' scroll-y="true" bindscrolltolower="onScrollLoad">
                 <view class='talk-item' wx:for="{{commentList}}" wx:key="index">
                     <view class='talk-item-left'>
-                        <image class='talk-item-face' wx:if="{{videos[videoIndex].icon === ''}}"
+                        <image class='talk-item-face' wx:if="{{videoList[videoIndex].icon === ''}}"
                                src='/assets/image/userImage.png'></image>
-                        <image class='talk-item-face' wx:else src="{{videos[videoIndex].icon}}"></image>
+                        <image class='talk-item-face' wx:else src="{{videoList[videoIndex].icon}}"></image>
                     </view>
                     <view class='talk-item-right'>
                         <text class='talk-item-nickname'>{{item.nickName}}</text>

@@ -30,53 +30,11 @@ Page({
         touchStartingY: 0,
         nowPage: 1,
         pageNo: 1,
-        contentId: '',
-        likeNum: 0,
+        videoid: 0,
+        favoritecount: 0,
         rows: 9,
         commentList: [],
-        videos: [
-            {
-                videoUrl: "http://simple-douyin-oss.test.upcdn.net/videos/1/2024-05-13 01:51:16.mp4",
-                durations: 10,
-                poster: "http://simple-douyin-oss.test.upcdn.net/covers/1/2024-05-13 01:51:18.webp",
-                likenum: 10,
-                commnetnum: '520',
-                rewardNum: '6',
-                isLike: 0
-            },
-            {
-                videoUrl: "http://video.microc.cn/dG1wL3d4MzkwNjg3YjY3OTZjZTMzYS5vNnpBSnMzYTJqaDJHUWRGVllDV2JhaHhjTUFzLkFaeGE2d1NIVTV3cjkyNGFlOGIyMjMxYTgwNjYyOTVhZjY2YTJjN2VjY2MwLm1wNA==",
-                durations: 10,
-                poster: "https://p3.pstatp.com/large/131040001488de047292a.jpg",
-                likenum: 10,
-                commnetnum: '520',
-                rewardNum: '6'
-            },
-            {
-                videoUrl: "https://aweme.snssdk.com/aweme/v1/playwm/?video_id=v0200fce0000bg36q72j2boojh1t030g&line=0",
-                durations: 10,
-                poster: "https://p99.pstatp.com/large/12c5c0009891b32e947b7.jpg",
-                likenum: 10,
-                commnetnum: '20',
-                rewardNum: '6'
-            },
-            {
-                videoUrl: "https://aweme.snssdk.com/aweme/v1/playwm/?video_id=v0300fd10000bfrb9mlpimm72a92fsj0&line=0",
-                durations: 10,
-                poster: "https://p99.pstatp.com/large/12246000525d4c87900e7.jpg",
-                likenum: 10,
-                commnetnum: '20',
-                rewardNum: '6'
-            },
-            {
-                videoUrl: "http://video.microc.cn/lecturer_iOS_201903181745504660A5DxJE9a.mp4",
-                durations: 10,
-                poster: "http://video.microc.cn/lecturer_iOS_201903181745504660A5DxJE9a.mp4?vframe/jpg/offset/0",
-                likenum: 10,
-                commnetnum: '20',
-                rewardNum: '6'
-            }
-        ],
+        videoList: [],
         videoIndex: 0,
         objectFit: "contain",
         totalCount: '',
@@ -98,6 +56,7 @@ Page({
     /**
      * 生命周期函数--监听页面加载
      */
+    // tabBar只会加载一次
     onLoad: function () {
         // 滑动为触摸结束事件设置200ms时延，避免函数被多次调用影响性能
         this.videoChange = throttle(this.touchEndHandler, 200)
@@ -124,6 +83,18 @@ Page({
      * 生命周期函数--监听页面显示
      */
     onShow: function () {
+        let latestTime = wx.getStorageSync('nextTime') || 0
+        let token = wx.getStorageSync('token') || ''
+        getFeedPromise(latestTime, token)
+            .then((videoList) => {
+                console.log(videoList)
+                this.setData({
+                    videoList: videoList
+                })
+            })
+            .catch((error) => {
+                console.error('Failed to get feed:', error)
+            })
         this.setData({
             windowHeight: wx.getSystemInfoSync.windowHeight
         })
@@ -211,7 +182,7 @@ Page({
                     })
                 })
             })
-        } else if (deltaY < -100 && index !== (this.data.videos.length - 1)) {
+        } else if (deltaY < -100 && index !== (this.data.videoList.length - 1)) {
             this.setData({
                 animationShow: true
             }, () => {
@@ -249,7 +220,7 @@ Page({
     // direction为-1，向上滑动，animationImage1为(index)的poster，animationImage2为(index+1)的poster
     // direction为1，向下滑动，animationImage1为(index-1)的poster，animationImage2为(index)的poster
     createAnimation(direction, index) {
-        let videos = this.data.videos
+        let videoList = this.data.videoList
         let currentTranslateY = this.data.currentTranslateY
         console.log('direction ', direction)
         console.log('index ', index)
@@ -268,7 +239,7 @@ Page({
     showTalks: function (e) {
         // 加载数据'
         this.setData({
-            contentId: e.currentTarget.dataset.videoid,
+            videoId: e.currentTarget.dataset.videoid,
             commnetNum: e.currentTarget.dataset.commnetnum
         })
         console.log(e)
@@ -293,108 +264,65 @@ Page({
         this.vvideo.play()
     },
 
-    /// 双击
+    // 双击
     doubleTap: function (e) {
-        var that = this
-        // 控制点击事件在350ms内触发，加这层判断是为了防止长按时会触发点击事件
-        that.setData({
-            contentId: 6, // 点赞内容id
-            // contentId: e.currentTarget.dataset.videoid, // 点赞内容id
-            videoIndex: e.currentTarget.dataset.index,
-            likeNum: e.currentTarget.dataset.likenum
-        })
-        that.sendFavoriteAction()
-        // that.addVideoLike()
-    },
-
-    // 定义发送点赞操作请求的函数
-    sendFavoriteAction: function () {
-        // function sendFavoriteActionRequest(token, videoId, actionType) {
-        // 构建请求的URL
-        console.log("发送点赞")
-        const apiUrl = 'http://127.0.0.1:8888/douyin/favorite/action/'
-
-        // 构建请求的数据
-        // 调用函数发送点赞操作请求，假设点赞视频ID为123，点赞操作类型为1（点赞）2（取消点赞）
-        const requestData = {
-            token: app.globalData.token,
-            video_id: 6,
-            action_type: 1
-        };
-
-        const like = this.data.likeNum
-
-        // 发送HTTP POST请求
-        wx.request({
-            url: apiUrl,
-            method: 'POST',
-            data: requestData,
-            success: function (res) {
-                // 请求成功的回调函数
-                console.log('Favorite action request successful:', res.data);
-            },
-            fail: function (error) {
-                // 请求失败的回调函数
-                console.error('Failed to send favorite action request:', error);
-            }
-        });
-
-        // Http.HttpRequst(false, apiUrl, false, '', requestData, 'POST', false, function (res) {
-        //     // 0-成功，1-失败
-        //     console.log(res.status_code === 0, '66')
-        //     if (res.status_code === 0) {
-        //         that.setData({
-        //             [videosList]: res.dataObject,
-        //             [likenum]: parseInt(like) + parseInt(1)
-        //         })
-        //     } else if (res.code === 1) {
-        //         console.log(res.status_msg)
-        //     } else {
-        //         console.log("未知错误")
-        //     }
-        // })
-
-        // 发送HTTP POST请求
-        // wx.request({
-        //     url: apiUrl,
-        //     method: 'POST',
-        //     data: requestData,
-        //     success: function (res) {
-        //         // 请求成功的回调函数
-        //         console.log('Favorite action request successful:', res.data);
-        //     },
-        //     fail: function (error) {
-        //         // 请求失败的回调函数
-        //         console.error('Failed to send favorite action request:', error);
-        //     }
-        // });
-    },
-
-    addVideoLike: function () { // 点赞视频
-        var that = this;
-        const params = {
-            accessToken: app.globalData.token,
-            evaType: 'content',
-            id: that.data.contentId,
-            likeFlag: 1
+        let token = wx.getStorageSync('token') || ''
+        if (!token) {
+            wx.navigateTo({
+                url: '/pages/login/login',
+            })
+            return
         }
-        const index = that.data.videoIndex
-        const videosList = "videos[" + index + "].isLike"
-        const likenum = "videos[" + index + "].likenum"
-        const like = that.data.likeNum
-        console.log(likenum, 'likenumlikenumlikenumlikenum')
-        Http.HttpRequst(false, '/api/lecture/addUserLike?accessToken=' + params.accessToken + '&evaType=content' + '&id=' + params.id + '&likeFlag=1', false, '', params, 'POST', false, function (res) {
-            console.log(res.code === 102, '66')
-            if (res.code === 102) {
-                that.setData({
-                    [videosList]: res.dataObject,
-                    [likenum]: parseInt(like) + parseInt(1)
-                })
-            } else if (res.code === 101) {
-                console.log(res.value)
+
+        // 控制点击事件在350ms内触发，加这层判断是为了防止长按时会触发点击事件
+        if (e.currentTarget.dataset.isfavorite === true) {
+            this.videoLikeAction(e, token, 2)
+            let videoIndex = e.currentTarget.dataset.index
+            let videoList = this.data.videoList
+            // 更新视频对象的属性
+            videoList[videoIndex].is_favorite = false
+            videoList[videoIndex].favorite_count -= 1
+            // 使用 setData 更新 videoList
+            this.setData({
+                videoList: videoList
+            })
+        } else {
+            this.videoLikeAction(e, token, 1)
+            let videoIndex = e.currentTarget.dataset.index
+            let videoList = this.data.videoList
+            // 更新视频对象的属性
+            videoList[videoIndex].is_favorite = true
+            videoList[videoIndex].favorite_count += 1
+            // 使用 setData 更新 videoList
+            this.setData({
+                videoList: videoList
+            })
+        }
+    },
+
+    // 1点赞 2取消
+    videoLikeAction: function (e, token, actionType) { // 点赞视频
+        let videoId = e.currentTarget.dataset.videoid
+        sendFavoriteAction(token, videoId, actionType, function (success, msg) {
+            if (success) {
+                if (actionType === 1) {
+                    console.log('点赞成功')
+                } else if (actionType === 2) {
+                    console.log('取消点赞成功')
+                } else {
+                    console.log('未知错误')
+                }
             } else {
+                if (actionType === 1) {
+                    console.log('点赞失败')
+                } else if (actionType === 2) {
+                    console.log('取消点赞失败')
+                } else {
+                    console.log('未知错误')
+                }
             }
         })
+
     },
 
     /**
@@ -405,7 +333,7 @@ Page({
         const params = {
             pageSize: 10,
             nowPage: this.data.pageNo,
-            contId: this.data.contentId,
+            contId: this.data.videoId,
             accessToken: app.globalData.token
         }
         const that = this
@@ -510,4 +438,94 @@ function throttle(fn, delay) {
             fn.apply(context, args);
         }, delay);
     }
+}
+
+// 无论是否登录都会获取视频流
+function getFeed(latestTime, token, callback) {
+    const apiUrl = app.serverUrl + '/douyin/feed/'
+    wx.request({
+        url: apiUrl,
+        method: 'GET',
+        data: {
+            latest_time: latestTime || 0, // 当前时间戳，精确到秒
+            token: token || ''
+        },
+        success: function (res) {
+            // 获取用户信息成功的处理逻辑
+            console.log('Get feed successful:', res.data)
+            // 处理注册成功的响应数据
+            const statusCode = res.data.status_code
+            if (statusCode === 0) {
+                wx.setStorageSync('videoList', res.data.video_list)
+                wx.setStorageSync('nextTime', res.data.next_time)
+                callback(true, "获取视频流成功")
+            } else {
+                // 注册失败，输出错误信息
+                console.error('Get feed failed:', res.data.status_msg)
+                callback(false, res.data.status_msg)
+            }
+        },
+        fail: function (error) {
+            // 获取用户信息失败的处理逻辑
+            console.error('Failed to get feed:', error)
+            callback(false, error)
+        }
+    })
+}
+
+function getFeedPromise(latestTime, token) {
+    return new Promise((resolve, reject) => {
+        getFeed(latestTime, token, function (success, msg) {
+            if (success) {
+                const videoList = wx.getStorageSync('videoList')
+                resolve(videoList)
+            } else {
+                reject(msg)
+            }
+        })
+    })
+}
+
+// 定义发送点赞操作请求的函数
+function sendFavoriteAction(token, videoId, actionType, callback) {
+    // 构建请求的URL 需要生成查询字符串在URL中
+    const apiUrl = app.serverUrl + '/douyin/favorite/action/'
+    console.log('token', token)
+    const queryString = toQueryString({
+        token: token,
+        video_id: videoId,
+        action_type: actionType
+    })
+    // 发送HTTP POST请求
+    wx.request({
+        url: apiUrl + '?' + queryString,
+        method: 'POST',
+        // header: {
+        //     'Content-Type': 'application/x-www-form-urlencoded' // 确保使用正确的 Content-Type
+        // },
+        // 调用函数发送点赞操作请求，假设点赞视频ID为123，点赞操作类型为1（点赞）2（取消点赞）
+        success: function (res) {
+            // 请求成功的回调函数
+            console.log('Favorite action request successful:', res.data)
+            const statusCode = res.data.status_code
+            if (statusCode === 0) {
+                callback(true, '点赞请求发送成功')
+            } else {
+                // 注册失败，输出错误信息
+                console.error('Favorite action request failed:', res.data.status_msg)
+                callback(false, res.data.status_msg)
+            }
+        },
+        fail: function (error) {
+            // 请求失败的回调函数
+            console.error('Failed to send favorite action request:', error)
+            callback(false, error)
+        }
+    })
+}
+
+function toQueryString(params) {
+    return Object.keys(params)
+        .map(key => encodeURIComponent(key) + '=' + encodeURIComponent(params[key]))
+        .join('&');
 }

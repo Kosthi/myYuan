@@ -82,9 +82,7 @@ Page({
                     success: () => {
                         // 跳转去首页
                         setTimeout(() => {
-                            wx.switchTab({
-                                url: '/pages/me/me'
-                            })
+                            wx.navigateBack() // 返回上一页
                         }, 150)
                     },
                     fail: (error) => {
@@ -122,9 +120,7 @@ Page({
                     success: () => {
                         // 跳转去首页
                         setTimeout(() => {
-                            wx.switchTab({
-                                url: '/pages/me/me',
-                            })
+                            wx.navigateBack() // 返回上一页
                         }, 150)
                     },
                     fail: (error) => {
