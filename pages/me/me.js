@@ -207,7 +207,7 @@ function getUserInfo(userId, token, callback) {
 
 function getUserInfoPromise(userId, token) {
     return new Promise((resolve, reject) => {
-        getPublishList(userId, token, function (success, msg) {
+        getUserInfo(userId, token, function (success, msg) {
             if (success) {
                 const userInfo = wx.getStorageSync('userInfo')
                 resolve(userInfo)
