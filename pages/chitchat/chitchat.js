@@ -5,31 +5,31 @@ Page({
      * 页面的初始数据
      */
     data: {
-      containerHeight: '110vh',
+        containerHeight: '110vh',
     },
-  
+
     onKeyboardHeightChange(res) {
-      console.log('Keyboard height:', res.height);
-      let height = res.height;
-      if (height > 0) {
-        // 键盘弹出时，计算合适的高度
-        let containerHeight = `calc(100vh - ${height}px)`;
-        this.setData({
-          containerHeight: containerHeight
-        });
-      } else {
-        // 键盘收起时，恢复默认高度
-        this.setData({
-          containerHeight: '100vh'
-        });
-      }
+        console.log('Keyboard height:', res.height);
+        let height = res.height;
+        if (height > 0) {
+            // 键盘弹出时，计算合适的高度
+            let containerHeight = `calc(100vh - ${height}px)`;
+            this.setData({
+                containerHeight: containerHeight
+            });
+        } else {
+            // 键盘收起时，恢复默认高度
+            this.setData({
+                containerHeight: '100vh'
+            });
+        }
     },
-    
+
     /**
      * 生命周期函数--监听页面加载
      */
     onLoad(options) {
-      console.log('Initial container height:', this.data.containerHeight);
+        console.log('Initial container height:', this.data.containerHeight);
     },
 
     /**

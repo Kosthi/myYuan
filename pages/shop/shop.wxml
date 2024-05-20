@@ -1,6 +1,11 @@
-<view class='top' style="padding-Top:{{safeTop+5}}px">
+<view class='top' style="padding-Top:{{safeTop}}px">
     <text>城市</text>
-    <view>搜索</view>
+    <view class="search">
+        <image src="/assets/image/chat/搜索 (1).png" mode=""/>
+        <input placeholder="耳机蓝牙" bindinput="handleSearchInput" bindconfirm="search"/>
+        <!-- <view></view> -->
+        <image class="grap" src="/assets/image/chat/相机.png" mode=""/>
+    </view>
 </view>
 
 <swiper autoplay indicator-dots>
@@ -12,7 +17,7 @@
         <!-- 导航列表 -->
 <view class="nav">
     <view wx:for="{{menuList}}" wx:key='index'>
-        <navigator url="/pages/detail/index">
+        <navigator url="/pages/detail/detail">
             <image src="{{item.img}}" mode=""/>
             <text>
                 {{item.title}}
@@ -36,8 +41,8 @@
         </view> -->
 
 <view class="shop">
-    <view class="shop-item" wx:for="{{shopList}}" wx:key="index">
-        <navigator url="/pages/detail/index?id={{item.proid}}">
+    <view class="shop-item" wx:for="{{shopList}}" wx:key="detail">
+        <navigator url="/pages/detail/detail?id={{item.proid}}">
             <image src="{{item.img1}}" mode=""/>
             <view class="proname">{{item.proname}}</view>
             <view style="color: red;">{{item.originprice}}</view>

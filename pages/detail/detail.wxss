@@ -78,4 +78,59 @@ view {
     text-overflow: ellipsis;
 }
 
+.navbar {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: 50px;
+    background-color: #fff;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    border-top: 1px solid #eaeaea;
+}
+
+.nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    color: #333;
+}
+
+.nav-icon {
+    width: 24px;
+    height: 24px;
+}
+
+.nav-item text {
+    font-size: 12px;
+    margin-top: 4px;
+}
+
+.eav {
+    padding: 10px;
+    background-color: rgb(252, 252, 252);
+    border-radius: 20px;
+    height: 300px;
+    display: flex;
+}
+
+/* .eav .title {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  width: 100%; 
+} */
+
+
+.eav .back {
+    padding: 12px 40px;
+    background-color: #f7eeee !important; /* 设置背景颜色 */
+    border-radius: 50px; /* 可选：添加圆角 */
+    margin: 10px;
+    width: 150px;
+    height: 50px;
+}
+
 

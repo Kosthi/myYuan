@@ -7,17 +7,17 @@
 </view>
 
 <view class="info-row">
-    <image src="../../imagines/地址.png" class="info-icon address-icon"/>
+    <image src="/assets/image/地址.png" class="info-icon address-icon"/>
     <text class="info-text">配送地址：辽宁省 沈阳市 铁西区 沈阳工业大学（中央校区）</text>
 </view>
 
 <view class="info-row">
-    <image src="../../imagines/仓库_库存.png" class="info-icon stock-icon"/>
+    <image src="/assets/image/仓库_库存.png" class="info-icon stock-icon"/>
     <text>库存 :{{info.stock}}</text>
 </view>
 
 <view class="info-row">
-    <image src="../../imagines/门票售卖.png" class="info-icon logistics-icon"/>
+    <image src="/assets/image/门票售卖.png" class="info-icon logistics-icon"/>
     <text>已经售卖 :{{info.sales}}</text>
 </view>
 
@@ -40,4 +40,30 @@
     <view>
 
     </view>
+</view>
+<view class="title">评价</view>
+<view class="eav">
+
+    <view class="back">
+        及其好用
+    </view>
+    <view class="back">
+        性价比高
+    </view>
+</view>
+
+
+<view class="navbar">
+    <navigator url="/pages/shop/shop" class="nav-item">
+        <image src="/assets/image/detail/3.1店铺.png" class="nav-icon"/>
+        <text>店铺</text>
+    </navigator>
+    <navigator url="/pages/customer-service/customer-service" class="nav-item">
+        <image src="/assets/image/detail/客服.png" class="nav-icon"/>
+        <text>客服</text>
+    </navigator>
+    <navigator url="/pages/cart/cart" class="nav-item">
+        <image src="/assets/image/detail/购物车.png" class="nav-icon"/>
+        <text>立即购买</text>
+    </navigator>
 </view>
