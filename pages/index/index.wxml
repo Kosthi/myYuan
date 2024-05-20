@@ -10,8 +10,8 @@
         </block>
     </view>
     <!-- 弹出组件  -->
-    <modal title='给明星送金币(个)' gold="{{gold}}" id="modalShow" multiline='true' bindinputCancel='onInputCancel'
-           bindinputConfirm='onInputConfirm' wx:if='{{ addingText }}'/>
+    <!--    <modal title='给明星送金币(个)' gold="{{gold}}" id="modalShow" multiline='true' bindinputCancel='onInputCancel'-->
+    <!--           bindinputConfirm='onInputConfirm' wx:if='{{ addingText }}'/>-->
 
     <video class="vvideo" bindtimeupdate="bindtimeupdate" id="kdvideo" bindtouchstart="touchStart"
            bindtouchend="touchEnd" bindtouchcancel="touchCancel" binderror="binderror" autoplay="{{autoplay}}"
@@ -49,18 +49,19 @@
                              src='/assets/image/active.png'></cover-image>
                 <cover-view class="text">{{videoList[videoIndex].favorite_count}}</cover-view>
             </cover-view>
-            <cover-view catchtap='showTalks' data-videoid="{{videoList[videoIndex].id}}"
-                        data-commnetnum="{{videoList[videoIndex].comment_count}}">
-                <cover-image class="icon right-icon" src='/assets/image/content.png'></cover-image>
+            <cover-view catchtap='showComments' data-videoid="{{videoList[videoIndex].id}}"
+                        data-commentnum="{{videoList[videoIndex].comment_count}}">
+                <cover-image class="icon right-icon" src='/assets/image/comment.png'></cover-image>
                 <cover-view class="text">{{videoList[videoIndex].comment_count}}</cover-view>
             </cover-view>
-            <cover-view>
-                <cover-image class="icon right-icon" src='/assets/image/shang.png' catchtap='onShowModal'
-                             data-rewardNum="{{videoList[videoIndex].rewardNum}}" data-index="{{videoIndex}}"
-                             data-conid="{{videoList[videoIndex].id}}"
-                             data-lecid="{{videoList[videoIndex].lecturerId}}"></cover-image>
-                <cover-view class="text">{{videoList[videoIndex].rewardNum}}</cover-view>
-            </cover-view>
+            <!--            收藏视频待实现-->
+            <!--            <cover-view>-->
+            <!--                <cover-image class="icon right-icon" src='/assets/image/shang.png' catchtap='onShowModal'-->
+            <!--                             data-rewardNum="{{videoList[videoIndex].rewardNum}}" data-index="{{videoIndex}}"-->
+            <!--                             data-conid="{{videoList[videoIndex].id}}"-->
+            <!--                             data-lecid="{{videoList[videoIndex].lecturerId}}"></cover-image>-->
+            <!--                <cover-view class="text">{{videoList[videoIndex].rewardNum}}</cover-view>-->
+            <!--            </cover-view>-->
         </cover-view>
         <!-- 暂停播放按钮  -->
         <!-- <cover-view class='icon-box' wx:if="{{!playState && !animationShow}}" bindtap='play'>
@@ -90,30 +91,30 @@
     <!-- 整个评论区  -->
     <view class='talks-layer' animation='{{talksAnimationData}}'>
         <!-- 主要作用是点击后隐藏评论区  -->
-        <view class='layer-white-space' catchtap='hideTalks'></view>
+        <view class='layer-white-space' catchtap='hideComments'></view>
         <!-- 评论区  -->
         <view class='talks'>
             <!-- 评论头部  -->
-            <view class='talk-header' catchtap='hideTalks'>
-                <view class='talk-count'>{{totalCount}} 条评论</view>
+            <view class='talk-header' catchtap='hideComments'>
+                <view class='talk-count'>{{videoList[videoIndex].comment_count}} 条评论</view>
                 <image src='/assets/image/close.png' class='talk-close'></image>
             </view>
             <view class='talk-footer'>
                 <input class='talk-input' value="{{inputValue}}" bindinput="contentInput" bindconfirm='addComment'
-                       type='text' placeholder='说点什么吧…'></input>
+                       type='text' placeholder='善语结善缘，恶语伤人心'></input>
             </view>
             <!-- 评论体  -->
             <scroll-view class='talk-body' scroll-y="true" bindscrolltolower="onScrollLoad">
                 <view class='talk-item' wx:for="{{commentList}}" wx:key="index">
                     <view class='talk-item-left'>
-                        <image class='talk-item-face' wx:if="{{videoList[videoIndex].icon === ''}}"
+                        <image class='talk-item-face' wx:if="{{item.user.avatar === ''}}"
                                src='/assets/image/userImage.png'></image>
-                        <image class='talk-item-face' wx:else src="{{videoList[videoIndex].icon}}"></image>
+                        <image class='talk-item-face' wx:else src="{{item.user.avatar}}"></image>
                     </view>
                     <view class='talk-item-right'>
-                        <text class='talk-item-nickname'>{{item.nickName}}</text>
-                        <text class='talk-item-content'>{{item.cont}}</text>
-                        <text class='talk-item-time'>{{tools.formatDate(item.createTimeMilli)}}</text>
+                        <text class='talk-item-nickname'>{{item.user.name}}</text>
+                        <text class='talk-item-content'>{{item.content}}</text>
+                        <text class='talk-item-time'>{{item.create_date}}</text>
                     </view>
                 </view>
             </scroll-view>

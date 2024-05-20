@@ -33,22 +33,22 @@ Page({
         videoid: 0,
         favoritecount: 0,
         rows: 9,
-        commentList: [],
         videoList: [],
         videoIndex: 0,
         objectFit: "contain",
-        totalCount: '',
-        hasmoreData: false,
-        loaderMore: true,
-        hiddenloading: false,
-        inputValue: '',
-        addingText: false,
         conid: '',
         lecid: '',
         indexVideo: '',
         rewardNum: '',
         gold: '',
-        commnetNum: '',
+        // 评论
+        commentList: [],
+        commentnum: 0,
+        inputValue: '',
+        addingText: false,
+        hasmoreData: false,
+        loaderMore: true,
+        hiddenloading: false,
         nodata: false,
         windowHeight: 0
     },
@@ -213,10 +213,6 @@ Page({
         console.log(e)
     },
 
-    listenerLogin: function () {
-        // this.toast.showToast('恭喜你，获得了toast');
-    },
-
     // direction为-1，向上滑动，animationImage1为(index)的poster，animationImage2为(index+1)的poster
     // direction为1，向下滑动，animationImage1为(index-1)的poster，animationImage2为(index)的poster
     createAnimation(direction, index) {
@@ -236,14 +232,29 @@ Page({
         })
     },
 
-    showTalks: function (e) {
-        // 加载数据'
+    showComments: function (e) {
+        let token = wx.getStorageSync('token')
+        let videoId = e.currentTarget.dataset.videoid
+        // 加载数据
         this.setData({
-            videoId: e.currentTarget.dataset.videoid,
-            commnetNum: e.currentTarget.dataset.commnetnum
+            // 清空输入文本框
+            inputValue: '',
+            videoid: e.currentTarget.dataset.videoid,
+            // commentnum: e.currentTarget.dataset.commentnum
         })
-        console.log(e)
-        this.getCommentList();
+
+        var that = this
+        getCommentList(token, videoId, function (success, msg) {
+            if (success) {
+                console.log('获取评论列表成功')
+                let commentList = wx.getStorageSync('commentList')
+                that.setData({
+                    commentList: commentList.reverse()
+                })
+            } else {
+                console.log(msg)
+            }
+        })
 
         // 设置动画内容为：使用绝对定位显示区域，高度变为100%
         this.animationTwo.bottom("0rpx").height("100%").step()
@@ -253,7 +264,7 @@ Page({
         })
     },
 
-    hideTalks: function () {
+    hideComments: function () {
         // 设置动画内容为：使用绝对定位隐藏整个区域，高度变为0
         this.animationTwo.bottom("-100%").height("0rpx").step()
         this.setData({
@@ -326,61 +337,20 @@ Page({
     },
 
     /**
-     * 获取视频评论数据
-     */
-    getCommentList: function (e) { //
-        wx.showNavigationBarLoading();
-        const params = {
-            pageSize: 10,
-            nowPage: this.data.pageNo,
-            contId: this.data.videoId,
-            accessToken: app.globalData.token
-        }
-        const that = this
-        Http.HttpRequst(false, '/api/lecture/getCommentList', false, '', params, 'get', false, function (res) {
-            console.log(res.code === 102, '66')
-            if (res.code === 102) {
-                if (res.dataObject.list.length < that.data.rows) {
-                    that.setData({
-                        commentList: that.data.commentList.concat(res.dataObject.list),
-                        totalCount: res.dataObject.totalCount
-                    })
-                    that.setData({
-                        hasmoreData: true,
-                        hiddenloading: false,
-                        loaderMore: false
-                    })
-                } else {
-                    that.setData({
-                        commentList: that.data.commentList.concat(res.dataObject.list),
-                        totalCount: res.dataObject.totalCount
-                    })
-                }
-                if (that.data.pageNo && res.dataObject.list.length === 0) {
-                    that.setData({
-                        nodata: true
-                    })
-                }
-            } else if (res.code === 1001) {
-            }
-        })
-    },
-
-    /**
      * 获取用户信息
      */
-    getOwnInfo: function () {
-        var params = {
-            accessToken: app.globalData.token
-        }
-        Http.HttpRequst(false, '/api/lecture/getOwnInfo', false, '', params, 'get', false, function (res) {
-            if (res.code === 102) {
-                app.globalData.userId = res.dataObject.lecturerId
-            } else if (res.code === 1001) {
-
-            }
-        })
-    },
+    // getOwnInfo: function () {
+    //     var params = {
+    //         accessToken: app.globalData.token
+    //     }
+    //     Http.HttpRequst(false, '/api/lecture/getOwnInfo', false, '', params, 'get', false, function (res) {
+    //         if (res.code === 102) {
+    //             app.globalData.userId = res.dataObject.lecturerId
+    //         } else if (res.code === 1001) {
+    //
+    //         }
+    //     })
+    // },
 
     contentInput: function (e) {
         this.setData({
@@ -391,9 +361,43 @@ Page({
     /**
      * 点击评论视频
      */
-    addComment: function () {
+    addComment: function (e) {
+        let token = wx.getStorageSync('token') || ''
+        if (!token) {
+            wx.redirectTo({
+                url: '/pages/login/login',
+            })
+            return
+        }
 
+        let videoId = this.data.videoid
+        let comment_text = this.data.inputValue
+        var that = this
+
+        // 1-发布评论，2-删除评论
+        // comment_text 用户填写的评论内容，在 action_type=1 的时候使用
+        // comment_id 要删除的评论id，在 action_type=2 的时候使用
+        sendCommentAction(token, videoId, 1, comment_text, -1, function (success, comment, msg) {
+            if (success) {
+                let commentList = that.data.commentList || []
+                let videoIndex = that.data.videoIndex
+                let videoList = that.data.videoList
+                // 更新视频对象的属性
+                videoList[videoIndex].comment_count += 1
+                // 使用 unshift 方法将 comment 添加到 commentList 的尾部
+                commentList.unshift(comment)
+                that.setData({
+                    inputValue: '',
+                    videoList: videoList,
+                    commentList: commentList
+                })
+            } else {
+                console.log(msg)
+            }
+        })
+        // sendCommentAction(token, videoId, 2, '', comment_id)
     },
+
     /**
      * 点击头像关注
      */
@@ -402,26 +406,28 @@ Page({
     //粉丝取消关注
     delLecturerFans: function (e) {
     },
-    /**
-     * 悬赏弹框组件
-     */
-    onShowModal: function (e) {
-        // 显示弹框
-        this.setData({
-            addingText: true,
-            conid: e.currentTarget.dataset.conid,
-            lecid: e.currentTarget.dataset.lecid,
-            indexVideo: e.currentTarget.dataset.index,
-            rewardNum: e.currentTarget.dataset.rewardnum
-        })
-    },
-    onInputCancel: function () {
-        // 隐藏弹框
-        console.log(55566)
-        this.setData({
-            addingText: false
-        })
-    }
+
+    // /**
+    //  * 悬赏弹框组件
+    //  */
+    // onShowModal: function (e) {
+    //     // 显示弹框
+    //     this.setData({
+    //         addingText: true,
+    //         conid: e.currentTarget.dataset.conid,
+    //         lecid: e.currentTarget.dataset.lecid,
+    //         indexVideo: e.currentTarget.dataset.index,
+    //         rewardNum: e.currentTarget.dataset.rewardnum
+    //     })
+    // },
+
+    // onInputCancel: function () {
+    //     // 隐藏弹框
+    //     console.log(55566)
+    //     this.setData({
+    //         addingText: false
+    //     })
+    // }
 })
 
 // 使用节流的方式来处理 touchEndHandler 函数的调用。
@@ -528,4 +534,75 @@ function toQueryString(params) {
     return Object.keys(params)
         .map(key => encodeURIComponent(key) + '=' + encodeURIComponent(params[key]))
         .join('&');
+}
+
+/**
+ * 获取视频评论数据
+ */
+function getCommentList(token, videoId, callback) {
+    wx.showNavigationBarLoading()
+    const apiUrl = app.serverUrl + '/douyin/comment/list/'
+    wx.request({
+        url: apiUrl,
+        method: 'GET',
+        data: {
+            token: token || '',
+            video_id: videoId
+        },
+        success: function (res) {
+            // 获取用户信息成功的处理逻辑
+            console.log('Get comment list successful:', res.data)
+            // 处理注册成功的响应数据
+            const statusCode = res.data.status_code
+            if (statusCode === 0) {
+                wx.setStorageSync('commentList', res.data.comment_list)
+                callback(true, "获取评论成功")
+            } else {
+                // 注册失败，输出错误信息
+                console.error('Get comment list failed:', res.data.status_msg)
+                callback(false, res.data.status_msg)
+            }
+        },
+        fail: function (error) {
+            // 获取用户信息失败的处理逻辑
+            console.error('Failed to get comment list:', error)
+            callback(false, error)
+        }
+    })
+}
+
+// 定义发送点赞操作请求的函数
+function sendCommentAction(token, videoId, actionType, comment_text, comment_id, callback) {
+    // 构建请求的URL 需要生成查询字符串在URL中
+    const apiUrl = app.serverUrl + '/douyin/comment/action/'
+    const queryString = toQueryString({
+        token: token,
+        video_id: videoId,
+        action_type: actionType,
+        comment_text: comment_text,
+        comment_id: comment_id
+    })
+    // 发送HTTP POST请求
+    wx.request({
+        url: apiUrl + '?' + queryString,
+        method: 'POST',
+        // 调用函数发送点赞操作请求，假设点赞视频ID为123，点赞操作类型为1（点赞）2（取消点赞）
+        success: function (res) {
+            // 请求成功的回调函数
+            console.log('Comment action request successful:', res.data)
+            const statusCode = res.data.status_code
+            if (statusCode === 0) {
+                callback(true, res.data.comment, '评论请求发送成功')
+            } else {
+                // 注册失败，输出错误信息
+                console.error('Comment action request failed:', res.data.status_msg)
+                callback(false, '', res.data.status_msg)
+            }
+        },
+        fail: function (error) {
+            // 请求失败的回调函数
+            console.error('Failed to send comment action request:', error)
+            callback(false, '', error)
+        }
+    })
 }
