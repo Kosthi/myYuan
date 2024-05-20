@@ -1,33 +1,7 @@
 // pages/login/login.js
 const app = getApp()
 
-const admins = [
-    {
-        id: 1,
-        username: "lisi",
-        password: "123456",
-        nickname: "凌晨.ヾ",
-        age: 20,
-        number: "210405225",
-        tel: "15524497402",
-        sex: "男",
-        avatar: "https://img0.baidu.com/it/u=530540642,263790536&fm=253&fmt=auto&app=120&f=JPEG?w=500&h=667",
-    },
-    {
-        id: 2,
-        username: "zs",
-        password: "123456",
-        nickname: "张三ll",
-        age: 20,
-        number: "210405225",
-        tel: 17729340454,
-        sex: "男",
-        avatar: "https://inews.gtimg.com/news_bt/OIPr9G8LrCpP4K3cdWrmvalN2p2YWWB3URkibvS38awOEAA/641",
-    }
-]
-
 Page({
-
     /**
      * 页面的初始数据
      */
@@ -82,7 +56,9 @@ Page({
                     success: () => {
                         // 跳转去首页
                         setTimeout(() => {
-                            wx.navigateBack() // 返回上一页
+                            wx.switchTab({
+                                url: '/pages/index/index'
+                            })
                         }, 150)
                     },
                     fail: (error) => {
@@ -120,7 +96,9 @@ Page({
                     success: () => {
                         // 跳转去首页
                         setTimeout(() => {
-                            wx.navigateBack() // 返回上一页
+                            wx.switchTab({
+                                url: '/pages/index/index'
+                            })
                         }, 150)
                     },
                     fail: (error) => {
