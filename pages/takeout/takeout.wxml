@@ -1,0 +1,184 @@
+<view class="search">
+    <image src="../../assets/image/chat/搜索 (1).png" mode=""/>
+    <input placeholder="华莱士" bindinput="handleSearchInput" bindconfirm="search"/>
+    <image src="/assets/image/chat/相机.png" mode=""/>
+</view>
+
+<view class="wrap">
+    <view>
+        <image src="/assets/image/takeout/01_美食外卖.png" mode=""/>
+        <text>美食外卖</text>
+    </view>
+
+    <view>
+        <image src="/assets/image/takeout/学生超市消费.png" mode=""/>
+        <text>超市便利</text>
+    </view>
+
+    <view>
+        <image src="/assets/image/takeout/鲜花.png" mode=""/>
+        <text>水果鲜花</text>
+    </view>
+
+    <view>
+        <image src="/assets/image/takeout/买菜.png" mode=""/>
+        <text>买菜</text>
+    </view>
+
+    <view>
+        <image src="/assets/image/takeout/shopping-cart.png" mode=""/>
+        <text>买药</text>
+    </view>
+
+    <view>
+        <image src="/assets/image/takeout/甜品饮品-03.png" mode=""/>
+        <text>甜品饮品</text>
+    </view>
+
+    <view>
+        <image src="/assets/image/takeout/爆红包.png" mode=""/>
+        <text>爆红包</text>
+    </view>
+
+    <view>
+        <image src="/assets/image/takeout/金豆.png" mode=""/>
+        <text>赚吃货豆</text>
+    </view>
+
+    <view>
+        <image src="/assets/image/takeout/奶茶.png" mode=""/>
+        <text>奶茶果汁</text>
+    </view>
+
+    <view>
+        <image src="/assets/image/takeout/全部.png" mode=""/>
+        <text>全部</text>
+    </view>
+
+</view>
+
+
+<view class="top">
+    <image class="top-image" src="../../imagines/top.png" mode=""/>
+</view>
+<view class="background">
+    <view class='f'>
+        <view class="son">
+            <text class="green-text">￥5</text>
+            <text class="green-subtext">满30可用</text>
+        </view>
+        <text class="red-text">可膨胀红包</text>
+        <text class="red-subtext">添加福利官，红包可膨胀</text>
+    </view>
+</view>
+
+<view class="wrap_">
+    <view class="item">
+        <text class="text-item">天天爆红包</text>
+    </view>
+
+    <view class="item">
+        <text class="text-item">减配送费</text>
+    </view>
+
+    <!-- <view class = "item">
+      <text class="text-item">无门槛红包</text>
+    </view> -->
+
+    <view class="item">
+        <text class="text-item">满减优惠</text>
+    </view>
+</view>
+
+<view class='list'>
+    <view class='list-item'>
+        <image src="/assets/image/takeout/80d8379c305d9e2d1e67bc8b2d7b6a7.jpg" mode=""/>
+
+        <view class='content'>
+            <view class="name">
+                肯德基宅急送（翟）
+            </view>
+            <view class="score">
+                4.9分 月售1000+
+            </view>
+
+            <view class="ride">
+                起送￥20 满30配送￥4.5
+                <text style="color: #999; text-decoration: line-through;">￥6</text>
+            </view>
+
+
+            <view class='merchant'>
+                <image src="/assets/image/takeout/pk.png" class="icon"/>
+                <text>铁西汉堡薯条·第1名</text>
+            </view>
+        </view>
+    </view>
+
+    <view class='list-item'>
+        <image src="/assets/image/takeout/c01e78b9f6fef1e95ad54add1f406b1.jpg" mode=""/>
+        <view class='content'>
+
+            <view class="name">
+                蜜雪冰城（荣信财富）
+            </view>
+            <view class="score">
+                4.9分 月售2000+
+            </view>
+
+            <view class="ride">
+                起送￥15 免配送费
+            </view>
+
+            <view class='merchant'>
+                <image src="/assets/image/com.png" class="icon"/>
+                商家回复快
+            </view>
+        </view>
+    </view>
+
+    <view class='list-item'>
+        <image src="/assets/image/takeout/4b0f58e202ac0e200a3d90f920edf72.jpg" mode=""/>
+
+        <view class='content'>
+            <view class="name">
+                700CC（铁西荣信财富）
+            </view>
+            <view class="score">
+                4.9分 月售800+
+            </view>
+
+            <view class="ride">
+                起送￥15 免配送费
+            </view>
+
+            <view class='merchant'>
+                <image src="/assets/image/com.png" class="icon"/>
+                <text>商家回复快</text>
+            </view>
+        </view>
+    </view>
+
+    <view class='list-item'>
+        <image src="/assets/image/takeout/41f3c3d3bbcaf0e9731d8ef7e233c04.jpg" mode=""/>
+
+        <view class='content'>
+            <view class="name">
+                芊花艺店（鲜花·玫瑰）
+            </view>
+            <view class="score">
+                5.0分 月售200+
+            </view>
+
+            <view class="ride">
+                起送￥0 免配送费
+            </view>
+
+            <view class='merchant'>
+                <image src="/assets/image/com.png" class="icon"/>
+                <text>"花很漂亮"</text>
+            </view>
+        </view>
+    </view>
+
+</view>

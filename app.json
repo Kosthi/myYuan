@@ -3,6 +3,7 @@
   "selectedColor": "#ff0000",
   "backgroundColor": "#000000",
   "pages": [
+    "pages/takeout/takeout",
     "pages/shop/shop",
     "pages/cart/cart",
     "pages/me/me",
