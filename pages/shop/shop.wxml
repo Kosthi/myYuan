@@ -1,4 +1,22 @@
-<view class='top' style="padding-Top:{{safeTop}}px">
+<view class="nav-top">
+    <image class="nav-image" src="/assets/image/shop/抖音.png" mode=""/>
+    <view class="nav-image-item">超级直播日</view>
+    <view class="pagesss">
+        <view class="page1">
+            首页
+        </view>
+        <view class="page2">
+            秒送
+        </view>
+    </view>
+    <view class="image-item">
+        <image src="/assets/image/shop/红包.png" mode=""/>
+        <image src="/assets/image/shop/消息.png" mode=""/>
+    </view>
+
+</view>
+
+<view class='top'>
     <text>城市</text>
     <view class="search">
         <image src="/assets/image/chat/搜索 (1).png" mode=""/>

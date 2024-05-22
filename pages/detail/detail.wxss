@@ -18,6 +18,7 @@
 view {
     padding: 5px 10px;
     box-sizing: border-box;
+
 }
 
 .cover image {
@@ -109,6 +110,7 @@ view {
 }
 
 .eav {
+    background: linear-gradient(45deg, #fcfaf9, #f7f1f0);
     padding: 10px;
     background-color: rgb(252, 252, 252);
     border-radius: 20px;
@@ -125,8 +127,9 @@ view {
 
 
 .eav .back {
+    background: linear-gradient(45deg, #f8c2ba, #ffdad4);
     padding: 12px 40px;
-    background-color: #f7eeee !important; /* 设置背景颜色 */
+
     border-radius: 50px; /* 可选：添加圆角 */
     margin: 10px;
     width: 150px;

@@ -25,7 +25,7 @@ Page({
             {
                 img: "/assets/image/me/外卖订单.png",
                 title: "抖声外卖",
-                url: "/pages/money/money"
+                url: "/pages/takeout/takeout"
             },
             {
                 img: "/assets/image/me/退出.png",

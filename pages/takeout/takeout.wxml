@@ -1,3 +1,9 @@
+<view class="nav">
+    <image src="/assets/image/takeout/401位置-线性.png" mode=""/>
+    <view>沈阳工业大学</view>
+    <image src="/assets/image/takeout/向下.png" mode=""/>
+</view>
+
 <view class="search">
     <image src="../../assets/image/chat/搜索 (1).png" mode=""/>
     <input placeholder="华莱士" bindinput="handleSearchInput" bindconfirm="search"/>

@@ -1,3 +1,15 @@
+.nav {
+    padding: 4px 15px;
+    display: flex;
+    background: linear-gradient(180deg, #fedbdb, #fcada0);
+}
+
+.nav image {
+    margin-top: 4px;
+    width: 20px;
+    height: 20px;
+}
+
 .search {
     /* background-color: #f4f4f4; */
     border-radius: 20px;
@@ -5,6 +17,7 @@
     display: flex;
     padding: 10px;
     margin: 10px;
+
 }
 
 .background {

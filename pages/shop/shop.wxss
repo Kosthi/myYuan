@@ -1,3 +1,56 @@
+.nav-top {
+    display: flex;
+    background: linear-gradient(180deg, #fb5745, #fcada0);
+}
+
+.nav-top .pagesss {
+    display: flex;
+    padding: 6px 10px;
+    padding-left: 30px;
+    width: 150px;
+    /* background: rgb(163, 156, 156); */
+}
+
+.nav-top .page1 {
+    padding: 2px 8px;
+    width: 50px;
+    background: #eca8a9;
+    border-radius: 50px;
+}
+
+.nav-top .page2 {
+    padding: 2px 8px;
+    width: 50px;
+    border-radius: 50px;
+    background: #eca8a9;
+    margin-left: 7px;
+}
+
+
+.nav-top .nav-image-item {
+    /* margin-top: 7px; */
+    border-radius: 50px 0;
+    background: linear-gradient(180deg, #ff3646, #ec8a7f);
+    color: #e1e1e1;
+    padding: 5px 7px;
+    margin-left: -10px;
+}
+
+.nav-top .nav-image {
+    margin-top: 4px;
+    margin-left: 25px;
+}
+
+.nav-top image {
+    margin-top: 4px;
+    width: 30px;
+    height: 30px;
+}
+
+.nav-top .image-item {
+    /* margin-left: 50px; */
+}
+
 swiper image {
     width: 100%;
     /* height: 200px; */
@@ -16,11 +69,11 @@ swiper {
     top: 0;
     width: 100vw;
     z-index: 222; */
-    background: red;
+    background: linear-gradient(180deg, #fcada0, #fa7465);
     /* height: 100px; */
     display: flex;
-    padding: 20px 0;
-    padding-top: 30px;
+    padding: 0 0 20px 10px;
+    /* padding-top: 30px; */
     box-sizing: border-box;
     align-items: center;
 }
@@ -65,9 +118,11 @@ swiper {
     display: flex;
     flex-wrap: wrap;
     background: #f5f5f5;
+    border-radius: 50px;
 }
 
 .nav view {
+    border-radius: 50px;
     font-size: 14px;
     color: #898989;
     width: 25%;
