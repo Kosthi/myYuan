@@ -26,9 +26,9 @@ Page({
                 url: "/pages/music/music"
             },
             {
-                img: "/assets/image/me/我的钱包.png",
+                img: "/assets/image/me/外卖订单.png",
                 title: "抖声外卖",
-                url: "/pages/money/money"
+                url: "/pages/takeout/takeout"
             },
             {
                 img: "/assets/image/me/常用_查看更多.png",

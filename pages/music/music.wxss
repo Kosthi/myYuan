@@ -1,1 +1,159 @@
-/* pages/music/music.wxss */
+.top-search {
+
+    flex: 5;
+    /* background-color: #f4f4f4; */
+    border-radius: 20px;
+    border: #fedbdb 1px solid;
+    display: flex;
+    padding: 7px;
+    margin: 10px;
+}
+
+.top-search image {
+    width: 20px;
+    height: 20px;
+}
+
+.top {
+    background: #f1f5f8;
+    display: flex;
+}
+
+.top-image {
+    margin-top: 9px;
+    margin-right: 10px;
+    width: 40px;
+    height: 40px;
+}
+
+.text1 {
+    background: #f1f5f8;
+    padding: 0 10px;
+    display: flex;
+    flex-wrap: nowrap; /* 禁止换行 */
+    overflow-x: auto; /* 如果内容超出容器宽度，允许水平滚动 */
+    white-space: nowrap; /* 禁止文本换行 */
+    font-size: 20px;
+    font-weight: bolder;
+    color: #282b2e;
+}
+
+.nav-top {
+    display: flex;
+}
+
+.nav-top image {
+    width: 20px;
+    height: 20px;
+}
+
+.user {
+    background: #f1f5f8;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.user .name {
+    margin-left: 10px;
+    margin-right: 5px;
+    font-size: 20px;
+}
+
+.user .small {
+    color: #4a4d51;
+    margin-left: 50px;
+}
+
+.user .user-image {
+    width: 60px;
+    height: 60px;
+    border-radius: 50px;
+}
+
+.user .z-image {
+    width: 35px;
+    height: 20px;
+}
+
+swiper image {
+    width: 100%;
+    height: 100%;
+}
+
+swiper {
+    background: #f1f5f8;
+
+    padding: 0 10px;
+    height: 280px;
+}
+
+.title, .vip {
+    background: #f1f5f8;
+}
+
+.container1 {
+    background: #f1f5f8;
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0 10px;
+    box-sizing: border-box;
+}
+
+.list-item {
+    width: 33.3%;
+    margin-top: 10px;
+    position: relative;
+}
+
+.container1 image {
+    height: 30vw;
+    width: 30vw;
+}
+
+.list-item .text {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    columns: #778877;
+    padding: 4px 0;
+}
+
+.list-item .count {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    background: rgba(0, 0, 0, .7);
+    padding: 2px 4px;
+    font-size: 12px;
+    color: #fff;
+    border-radius: 4px;
+}
+
+.custom-pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.custom-pagination view {
+    width: 8px;
+    height: 8px;
+    margin: 0 5px;
+    background-color: #ccc;
+    border-radius: 50%;
+}
+
+.custom-pagination .active {
+    background-color: #333;
+}
+
+.vip {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+    margin: 10 10;
+}
+
+

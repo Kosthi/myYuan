@@ -4,18 +4,19 @@
   "backgroundColor": "#000000",
   "pages": [
     "pages/me/me",
+    "pages/music/music",
+    "pages/shop/shop",
+    "pages/cart/cart",
+    "pages/takeout/takeout",
+    "pages/chitchat/chitchat",
     "pages/add/add",
     "pages/locate/locate",
     "pages/index/index",
     "pages/chat/chat",
-    "pages/chitchat/chitchat",
     "pages/friend/friend",
     "pages/login/login",
-    "pages/shop/shop",
-    "pages/music/music",
     "pages/money/money",
     "pages/much/much",
-    "pages/cart/cart",
     "pages/history/history",
     "pages/detail/detail",
     "pages/logs/logs"
@@ -29,32 +30,32 @@
       {
         "pagePath": "pages/index/index",
         "text": "",
-        "iconPath": "/assets/image/32018fb7bb904844bbdd09c397ad112.png",
-        "selectedIconPath": "/assets/image/7259e16dd51cf7d8bc6e716ce1a28fe.png"
+        "iconPath": "/assets/image/tab/index1.png",
+        "selectedIconPath": "/assets/image/tab/index2.png"
       },
       {
         "pagePath": "pages/friend/friend",
         "text": "",
-        "iconPath": "/assets/image/c1d270f8ad1adcc8d0003a5d566ba5b.png",
-        "selectedIconPath": "/assets/image/2b1a0cff71a0de648ea221e230aa01b.png"
+        "iconPath": "/assets/image/tab/friend1.png",
+        "selectedIconPath": "/assets/image/tab/friend1.png"
       },
       {
         "pagePath": "pages/add/add",
         "text": "",
         "iconPath": "/assets/image/加.png",
-        "selectedIconPath": "/assets/image/首页2-1.png"
+        "selectedIconPath": "/assets/image/加.png"
       },
       {
         "pagePath": "pages/chat/chat",
         "text": "",
-        "iconPath": "/assets/image/0617c60bd61705b61835a99dd22ca65.png",
-        "selectedIconPath": "/assets/image/a9a45bac6f876e4bd76096f735db0d9.png"
+        "iconPath": "/assets/image/tab/message2.png",
+        "selectedIconPath": "/assets/image/tab/message1.png"
       },
       {
         "pagePath": "pages/me/me",
         "text": "",
-        "iconPath": "/assets/image/dbffee274d0386f96e6a90569ded9f9.png",
-        "selectedIconPath": "/assets/image/c4ce9f0872764c5f8d1e9dc9d00ff54.png"
+        "iconPath": "/assets/image/tab/wode2.png",
+        "selectedIconPath": "/assets/image/tab/wode1.png"
       }
     ]
   },

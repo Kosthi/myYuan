@@ -1,1 +1,23 @@
-/* pages/chitchat/index.wxss */
+.container {
+    display: flex;
+    justify-content: flex-end;
+    height: var(--container-height);
+}
+
+.chat {
+    background-color: #f4f4f4;
+    border-radius: 50px;
+    display: flex;
+    padding: 1px 8px;
+}
+
+.chat image {
+    margin-top: 10px;
+    width: 25px;
+    height: 25px;
+    margin-right: 5px;
+}
+
+input {
+    padding: 9px;
+}

@@ -1,6 +1,29 @@
-<view class='top' style="padding-Top:{{safeTop+5}}px">
+<view class="nav-top">
+    <image class="nav-image" src="/assets/image/shop/抖音.png" mode=""/>
+    <view class="nav-image-item">超级直播日</view>
+    <view class="pagesss">
+        <view class="page1">
+            首页
+        </view>
+        <view class="page2">
+            秒送
+        </view>
+    </view>
+    <view class="image-item">
+        <image src="/assets/image/shop/红包.png" mode=""/>
+        <image src="/assets/image/shop/消息.png" mode=""/>
+    </view>
+
+</view>
+
+<view class='top'>
     <text>城市</text>
-    <view>搜索</view>
+    <view class="search">
+        <image src="/assets/image/chat/搜索 (1).png" mode=""/>
+        <input placeholder="耳机蓝牙" bindinput="handleSearchInput" bindconfirm="search"/>
+        <!-- <view></view> -->
+        <image class="grap" src="/assets/image/chat/相机.png" mode=""/>
+    </view>
 </view>
 
 <swiper autoplay indicator-dots>
@@ -12,7 +35,7 @@
         <!-- 导航列表 -->
 <view class="nav">
     <view wx:for="{{menuList}}" wx:key='index'>
-        <navigator url="/pages/detail/index">
+        <navigator url="/pages/detail/detail">
             <image src="{{item.img}}" mode=""/>
             <text>
                 {{item.title}}
@@ -36,8 +59,8 @@
         </view> -->
 
 <view class="shop">
-    <view class="shop-item" wx:for="{{shopList}}" wx:key="index">
-        <navigator url="/pages/detail/index?id={{item.proid}}">
+    <view class="shop-item" wx:for="{{shopList}}" wx:key="detail">
+        <navigator url="/pages/detail/detail?id={{item.proid}}">
             <image src="{{item.img1}}" mode=""/>
             <view class="proname">{{item.proname}}</view>
             <view style="color: red;">{{item.originprice}}</view>

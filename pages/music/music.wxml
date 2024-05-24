@@ -1,2 +1,54 @@
-<!--pages/music/music.wxml-->
-<text>pages/music/music.wxml</text>
+<view class="text1">
+    推荐 乐馆 助眠 庆余年2 会员 儿童 AI帮你唱 SunnAI y\演出ing 国风 游戏
+</view>
+<view class="top">
+    <view class="top-search">
+        <image src="../../assets/image/chat/搜索 (1).png" mode=""/>
+        <input placeholder="如果爱忘了" bindinput="handleSearchInput" bindconfirm="search"/>
+        <image src="/assets/image/chat/相机.png" mode=""/>
+    </view>
+    <image class="top-image" src="/assets/image/music/音乐.png" mode=""/>
+</view>
+
+<view class="user">
+    <image class="user-image" src="/assets/image/music/f480ccffb521e38bdcdef94443bf667.jpg" mode=""/>
+    <view class="name">凌晨.ヾ</view>
+    <image class="z-image" src="/assets/image/music/chuangxiangzijinvip.png" mode=""/>
+    <view class="small">查看我的音乐DNA ></view>
+</view>
+
+<swiper autoplay indicator-dots indicator-active-color="red">
+    <swiper-item wx:for='{{bannerList}}' wx:key="index">
+        <image src="{{item.pic}}" mode="" wx:key="index"/>
+    </swiper-item>
+</swiper>
+
+<view class="title">
+    歌单
+</view>
+
+<view class='container1'>
+    <view class='list-item' wx:for='{{list}}' wx:key="index">
+        <image src="{{item.coverImgUrl}}" mode=""/>
+        <view class="text">
+            {{item.name}}
+        </view>
+        <view class="count">
+            {{item.playCount / 100000000 >= 1 ?
+            (item.playCount/100000000) + '亿':
+            item.playCount/10000 >= 1 ?
+            (item.playCount / 10000) + '万'
+            : item.playCount}}
+        </view>
+    </view>
+</view>
+
+<view class="vip">
+    VIP歌曲限时免费听
+</view>
+
+<swiper autoplay indicator-dots indicator-active-color="red" vertical>
+    <swiper-item wx:for='{{bannerList}}' wx:key="index" class="swiper-item">
+        <image src="{{item.pic}}" mode="" wx:key="index"/>
+    </swiper-item>
+</swiper>

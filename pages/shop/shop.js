@@ -16,27 +16,27 @@ Page({
                 title: "京东数码",
             },
             {
-                img: "../../imagines/农场.png",
+                img: "/assets/image/农场.png",
                 title: "东东农场",
             },
             {
-                img: "../../imagines/配送到家.png",
+                img: "/assets/image/配送到家.png",
                 title: "京东到家",
             },
             {
-                img: "../../imagines/首页2-1.png",
+                img: "/assets/image/首页2-1.png",
                 title: "服饰美妆",
             },
             {
-                img: "../../imagines/领券.png",
+                img: "/assets/image/领券.png",
                 title: "领券",
             },
             {
-                img: "../../imagines/充值中心.png",
+                img: "/assets/image/充值中心.png",
                 title: "充值中心",
             },
             {
-                img: "../../imagines/95折.png",
+                img: "/assets/image/95折.png",
                 title: "PLUS 95折",
             },
         ],
