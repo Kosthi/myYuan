@@ -3,9 +3,10 @@
 <view class="container1" bindtap="changePlayStatus">
     <!-- <view class='content' wx:if="{{videoList.length!=0}}"> -->
     <view class="animation-wrapper" animation="{{animation}}">
-        <block wx:for="{{videoList}}" wx:key="{{item.poster}}">
+        <!--        用视频封面作为视频加载前的动画-->
+        <block>
             <view class="animation-image-wrapper">
-                <image class="animation-image" src="{{item.cover_url}}"></image>
+                <image class="animation-image" src="{{videoList[videoIndex].cover_url}}"></image>
             </view>
         </block>
     </view>
@@ -15,7 +16,8 @@
 
     <video class="vvideo" bindtimeupdate="bindtimeupdate" id="kdvideo" bindtouchstart="touchStart"
            bindtouchend="touchEnd" bindtouchcancel="touchCancel" binderror="binderror" autoplay="{{autoplay}}"
-           objectFit="cover" hidden="{{animationShow}}" src="{{videoList[videoIndex].play_url}}" bindplay="bindplay"
+           objectFit="cover" hidden="{{animationShow}}" src="{{videoList[videoIndex].play_url}}" preload="auto"
+           bindplay="bindplay"
            controls="{{controls}}" loop="true">
         <cover-view class="tools">
             <cover-view class='user-image'>
