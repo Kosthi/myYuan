@@ -10,7 +10,7 @@ Page({
      * 页面的初始数据
      */
     data: {
-        percent: 33,
+        progress: 0,
         current: 0,
         autoplay: true,
         controls: false,
@@ -60,7 +60,7 @@ Page({
     onLoad: function () {
         // 滑动为触摸结束事件设置200ms时延，避免函数被多次调用影响性能
         this.videoChange = throttle(this.touchEndHandler, 200)
-        console.log(this.videoChange, 'this.videoChangethis.videoChange')
+        console.log(this.videoChange, 'this.videoChange')
         // 绑定updateVideoIndex事件，更新当前播放视频index
         event.on('updateVideoIndex', this, function (index) {
             console.log('event updateVideoIndex:', index)
@@ -88,9 +88,12 @@ Page({
         getFeedPromise(latestTime, token)
             .then((videoList) => {
                 console.log(videoList)
-                this.setData({
-                    videoList: videoList
-                })
+                // 只有返回有更新的视频时才需要更新
+                if (videoList.length > 0) {
+                    this.setData({
+                        videoList: videoList
+                    })
+                }
             })
             .catch((error) => {
                 console.error('Failed to get feed:', error)
@@ -176,7 +179,7 @@ Page({
                         animation: this.animation.export(),
                         videoIndex: res.index,
                         currentTranslateY: res.currentTranslateY,
-                        percent: 1
+                        progress: 1
                     }, () => {
                         event.emit('updateVideoIndex', res.index)
                     })
@@ -192,7 +195,7 @@ Page({
                         animation: this.animation.export(),
                         videoIndex: res.index,
                         currentTranslateY: res.currentTranslateY,
-                        percent: 1
+                        progress: 1
                     }, () => {
                         event.emit('updateVideoIndex', res.index)
                     })

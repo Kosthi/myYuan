@@ -83,7 +83,7 @@
 
         <!-- 进度条  -->
         <cover-view class="jindu-back"></cover-view>
-        <cover-view class="jindu" style='width: {{percent}}%'></cover-view>
+        <cover-view class="jindu" style='width: {{progress}}%'></cover-view>
     </video>
     <image class="play-btn" wx:if="{{!playState && !animationShow}}" src="/assets/image/play.png"></image>
     <!-- <progress class="progress" percent="{{percent}}" activeColor="#ffffff" backgroundColor="#A9A9A9" stroke-width="1"  wx:if="{{!animationShow}}" /> -->
