@@ -180,8 +180,11 @@ Page({
         let index = this.data.videoIndex
         // console.log(index, 'index')
 
-        // 往上滑动，前面要有视频
-        if (deltaY > 100 && index !== 0) {
+        // 向上滑动刷新
+        if (deltaY > 100 && index === 0) {
+            this.onShow()
+        } else if (deltaY > 100 && index !== 0) {
+            // 往上滑动，前面要有视频
             // 更早地设置 animationShow
             this.setData({
                 animationShow: true
