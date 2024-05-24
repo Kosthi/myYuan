@@ -30,13 +30,13 @@
       {
         "pagePath": "pages/index/index",
         "text": "",
-        "iconPath": "/assets/image/tab/index1.png",
-        "selectedIconPath": "/assets/image/tab/index2.png"
+        "iconPath": "/assets/image/tab/index2.png",
+        "selectedIconPath": "/assets/image/tab/index1.png"
       },
       {
         "pagePath": "pages/friend/friend",
         "text": "",
-        "iconPath": "/assets/image/tab/friend1.png",
+        "iconPath": "/assets/image/tab/friend2.png",
         "selectedIconPath": "/assets/image/tab/friend1.png"
       },
       {
