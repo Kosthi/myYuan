@@ -99,7 +99,7 @@ Page({
                 console.error('Failed to get feed:', error)
             })
         this.setData({
-            windowHeight: wx.getSystemInfoSync.windowHeight
+            windowHeight: wx.getSystemInfoSync().windowHeight
         })
     },
 
@@ -180,19 +180,20 @@ Page({
         let index = this.data.videoIndex
         // console.log(index, 'index')
 
+        // 往上滑动，前面要有视频
         if (deltaY > 100 && index !== 0) {
             // 更早地设置 animationShow
             this.setData({
                 animationShow: true
             }, () => {
-                console.log('-1 切换')
+                // console.log('-1 切换')
                 this.data.commentList = [] //滑动上一个视频清除评论列表
                 this.createAnimation(-1, index).then((res) => {
                     console.log(res)
                     this.setData({
-                        animation: this.animation.export(),
+                        // animation: this.animation.export(),
                         videoIndex: res.index,
-                        currentTranslateY: res.currentTranslateY,
+                        // currentTranslateY: res.currentTranslateY,
                         progress: 0
                     }, () => {
                         event.emit('updateVideoIndex', res.index)
@@ -200,15 +201,16 @@ Page({
                 })
             })
         } else if (deltaY < -100 && index !== (this.data.videoList.length - 1)) {
+            // 往下滑动，后面要有视频
             this.setData({
                 animationShow: true
             }, () => {
-                console.log('+1 切换')
+                // console.log('+1 切换')
                 this.createAnimation(1, index).then((res) => {
                     this.setData({
-                        animation: this.animation.export(),
+                        // animation: this.animation.export(),
                         videoIndex: res.index,
-                        currentTranslateY: res.currentTranslateY,
+                        // currentTranslateY: res.currentTranslateY,
                         progress: 0
                     }, () => {
                         event.emit('updateVideoIndex', res.index)
@@ -233,19 +235,19 @@ Page({
     // direction为-1，向上滑动，animationImage1为(index)的poster，animationImage2为(index+1)的poster
     // direction为1，向下滑动，animationImage1为(index-1)的poster，animationImage2为(index)的poster
     createAnimation(direction, index) {
-        let videoList = this.data.videoList
-        let currentTranslateY = this.data.currentTranslateY
-        console.log('direction ', direction)
-        console.log('index ', index)
+        // let videoList = this.data.videoList
+        // let currentTranslateY = this.data.currentTranslateY
+        // console.log('direction ', direction)
+        // console.log('index ', index)
         // 更新 videoIndex
         index += direction
-        currentTranslateY += -direction * this.data.windowHeight
-        console.log('currentTranslateY: ', currentTranslateY)
-        this.animation.translateY(currentTranslateY).step()
+        // currentTranslateY += -direction * this.data.windowHeight
+        // console.log('currentTranslateY: ', currentTranslateY)
+        // this.animation.translateY(currentTranslateY).step()
 
         return Promise.resolve({
             index: index,
-            currentTranslateY: currentTranslateY
+            // currentTranslateY: currentTranslateY
         })
     },
 

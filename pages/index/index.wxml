@@ -15,9 +15,8 @@
     <!--           bindinputConfirm='onInputConfirm' wx:if='{{ addingText }}'/>-->
 
     <video class="vvideo" bindtimeupdate="bindTimeUpdateHandler" id="kdvideo" bindtouchstart="touchStart"
-           bindtouchend="touchEnd" bindtouchcancel="touchCancel" binderror="binderror" autoplay="{{autoplay}}"
+           bindtouchend="touchEnd" bindtouchcancel="touchCancel" autoplay="{{autoplay}}"
            objectFit="cover" hidden="{{animationShow}}" src="{{videoList[videoIndex].play_url}}" preload="auto"
-           bindplay="bindplay"
            controls="{{controls}}" loop="true">
         <cover-view class="tools">
             <cover-view class='user-image'>
