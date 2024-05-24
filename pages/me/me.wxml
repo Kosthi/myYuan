@@ -12,7 +12,7 @@
     <!-- 第一行：图标 -->
     <view class="row3">
         <image class="icon1" src="../../assets/image/me/搜索.png"></image>
-        <image bindtap="switchTabIndex" class="icon2" src="../../assets/image/me/退出.png"></image>
+        <image class="icon2" src="../../assets/image/me/三横.png"></image>
     </view>
 </view>
 
@@ -20,16 +20,16 @@
 <scroll-view scroll-y="true" style="height: 100vh;">
     <view class="user-info">
         <view class="left">
-            <image class="img" src="{{userInfo.avatar}}" mode=""/>
+            <image class="img" src="{{user.avatar}}" mode=""/>
             <view class="gray-bg"></view> <!-- 灰色背景 -->
         </view>
         <view class="right">
             <view class="info">
-                <view class="nickname">{{userInfo.name}}</view>
+                <view class="nickname">{{user.nickname}}</view>
                 <image class="img1" src="../../assets/image/me/展开.png" mode=""/>
             </view>
             <view class="info">
-                <text> 抖声号：{{userInfo.id}} </text>
+                <text> 抖声号：{{user.number}} </text>
                 <image class="img2" src="../../assets/image/me/二维码 (1).png" mode=""/>
             </view>
         </view>
@@ -37,19 +37,19 @@
     <view class="white"> <!-- 白色背景 -->
         <view class="white-all">
             <view class="complenemt">
-                <view class="number">{{userInfo.total_favorited}}</view>
+                <view class="number">471</view>
                 <text>获赞</text>
             </view>
             <view class="complenemt">
-                <view class="number">{{0}}</view>
-                <text>好友</text>
+                <view class="number">471</view>
+                <text>朋友</text>
             </view>
             <view class="complenemt">
-                <view class="number">{{userInfo.follow_count}}</view>
+                <view class="number">250</view>
                 <text>关注</text>
             </view>
             <view class="complenemt">
-                <view class="number">{{userInfo.follower_count}}</view>
+                <view class="number">222</view>
                 <text>粉丝</text>
             </view>
             <view class="add-friend">添加朋友</view>
@@ -115,13 +115,15 @@
         </view>
         <!--  -->
         <view class="nav-production">
-            <view wx:for="{{publishList}}" wx:key="index" class="nav-item">
-                <navigator url="{{item.play_url}}">
-                    <image src="{{item.cover_url}}" mode=""/>
+            <view wx:for="{{production}}" wx:key="index" class="nav-item">
+                <navigator url="{{item.url}}">
+                    <image src="{{item.img}}" mode=""/>
                     <image class="aixin" src="../../assets/image/me/爱心.png" mode=""/>
-                    <text class="like-text">{{item.favorite_count}}</text>
+                    <text class="like-text">{{item.like}}</text>
                 </navigator>
             </view>
         </view>
+
+
     </view>
 </scroll-view>

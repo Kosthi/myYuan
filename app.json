@@ -3,6 +3,7 @@
   "selectedColor": "#ff0000",
   "backgroundColor": "#000000",
   "pages": [
+    "pages/index/index",
     "pages/me/me",
     "pages/music/music",
     "pages/shop/shop",
@@ -11,7 +12,6 @@
     "pages/chitchat/chitchat",
     "pages/add/add",
     "pages/locate/locate",
-    "pages/index/index",
     "pages/chat/chat",
     "pages/friend/friend",
     "pages/login/login",

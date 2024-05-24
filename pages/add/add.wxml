@@ -1,6 +1,6 @@
 <view class="input-container">
     <textarea class="input-field" placeholder="添加作品描述"></textarea>
-    <image class="icon" src="/assets/image/friend/添加视频.png" bindtap="chooseVideo"/>
+    <image class="icon" src="/assets/image/add/addvedio.png" bindtap="chooseVideo"/>
 </view>
 
 <view class="tag">

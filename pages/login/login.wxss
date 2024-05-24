@@ -16,7 +16,6 @@
     width: calc(100vw - 80px); /* 减去左右边距的总宽度 */
     display: flex;
     justify-content: center;
-
 }
 
 .user-login {
