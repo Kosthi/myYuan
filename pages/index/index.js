@@ -141,6 +141,20 @@ Page({
         }
     },
 
+    bindTimeUpdateHandler(e) {
+        // 视频当前播放时间
+        const currentTime = e.detail.currentTime;
+        // 视频总时间
+        const duration = e.detail.duration;
+        // 百分比
+        const progress = (currentTime / duration) * 100;
+        // console.log(progress)
+        // Update progress
+        this.setData({
+            progress: progress // Keep two decimal places
+        })
+    },
+
     // 触摸开始事件发生时，记录触摸的开始时间戳和 Y 坐标，并将 Y 坐标更新到页面数据中
     touchStart(e) {
         this.touchStartTime = e.timeStamp
@@ -179,7 +193,7 @@ Page({
                         animation: this.animation.export(),
                         videoIndex: res.index,
                         currentTranslateY: res.currentTranslateY,
-                        progress: 1
+                        progress: 0
                     }, () => {
                         event.emit('updateVideoIndex', res.index)
                     })
@@ -195,7 +209,7 @@ Page({
                         animation: this.animation.export(),
                         videoIndex: res.index,
                         currentTranslateY: res.currentTranslateY,
-                        progress: 1
+                        progress: 0
                     }, () => {
                         event.emit('updateVideoIndex', res.index)
                     })
@@ -250,7 +264,7 @@ Page({
         getCommentList(token, videoId, function (success, msg) {
             if (success) {
                 console.log('获取评论列表成功')
-                let commentList = wx.getStorageSync('commentList')
+                let commentList = wx.getStorageSync('commentList') || []
                 that.setData({
                     commentList: commentList.reverse()
                 })

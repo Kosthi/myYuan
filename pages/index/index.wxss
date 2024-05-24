@@ -97,6 +97,7 @@ video {
     bottom: 0;
     height: 5rpx;
     background-color: white;
+    transition: width 0.1s linear;
 }
 
 .jindu-back {

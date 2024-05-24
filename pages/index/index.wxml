@@ -14,7 +14,7 @@
     <!--    <modal title='给明星送金币(个)' gold="{{gold}}" id="modalShow" multiline='true' bindinputCancel='onInputCancel'-->
     <!--           bindinputConfirm='onInputConfirm' wx:if='{{ addingText }}'/>-->
 
-    <video class="vvideo" bindtimeupdate="bindtimeupdate" id="kdvideo" bindtouchstart="touchStart"
+    <video class="vvideo" bindtimeupdate="bindTimeUpdateHandler" id="kdvideo" bindtouchstart="touchStart"
            bindtouchend="touchEnd" bindtouchcancel="touchCancel" binderror="binderror" autoplay="{{autoplay}}"
            objectFit="cover" hidden="{{animationShow}}" src="{{videoList[videoIndex].play_url}}" preload="auto"
            bindplay="bindplay"
